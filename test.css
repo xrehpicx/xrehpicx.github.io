@@ -7,31 +7,6 @@ body {
   font-style: normal;
 }
 
-/*.Tabs {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-.Tabs #mainTabs {
-  align-content: center;
-  margin: 5px;
-  padding: 10px;
-}
-.Tabs p {
-  text-align: center;
-}
-.Tabs a {
-  background-color: rgba(0, 0, 0, .5);
-  padding: 8px;
-  color: rgba(255, 255, 255, .6);
-  text-decoration: none;
-  transition: 100ms;
-}
-.Tabs a:hover {
-  background-color: rgba(0, 0, 0, 1);
-  padding: 9px;
-  color: rgba(255, 255, 255, 1);
-  text-decoration: none;
-}*/
 .Heading {
   cursor: default;
   top: 50%;
