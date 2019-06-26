@@ -69,24 +69,6 @@ body {
 
   font-size: 40px;
 }
-.images {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  margin: 0px 600px 0px 600px;
-  padding: 10px;
-  border-radius: 10px;
-  transition: 200ms;
-}
-
-.images:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-
-  margin: 0px 570px 0px 570px;
-  padding: 20px;
-  border-radius: 12px;
-  transition: 200ms;
-}
 #mybgVideo {
   z-index: -10;
   position: fixed;
