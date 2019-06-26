@@ -34,11 +34,9 @@ body {
 }*/
 .Heading {
   cursor: default;
-
-  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /*transform: translate(-50%, -50%);*/
 }
 
 .Heading h1 {
@@ -52,18 +50,44 @@ body {
   cursor: default;
   text-align: center;
   font-size: 100px;
-  color: rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, 0.5);
 }
-
-.Heading h2 {
+.about {
   cursor: default;
-  color: rgba(255, 255, 255, .6);
   text-align: center;
+}
+.about a {
+  color: rgba(255, 255, 255, 0.6);
+
   font-size: 25px;
+  cursor: default;
+  text-decoration: none;
+  transition: 200ms;
+}
+.about a:hover {
+  color: rgba(255, 255, 255, 1);
+
+  font-size: 40px;
+}
+.images {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin: 0px 600px 0px 600px;
+  padding: 10px;
+  border-radius: 10px;
   transition: 200ms;
 }
 
-#myVideo {
+.images:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+
+  margin: 0px 570px 0px 570px;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 200ms;
+}
+#mybgVideo {
   z-index: -10;
   position: fixed;
   right: 0;
