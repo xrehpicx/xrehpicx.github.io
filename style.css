@@ -22,7 +22,7 @@ body {
   }
 /*NAVBAR*/
 .nav-items {
-  font-family: "Alegreya Sans SC", sans-serif;
+    font-family: 'Quicksand', sans-serif;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   list-style: none;
@@ -54,7 +54,7 @@ a {
 }
 .title > h1 {
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Rubik', sans-serif;
   font-size: 125px;
   margin: 0;
   transition-duration: 200ms;
@@ -71,7 +71,7 @@ a {
 }*/
 .title > p {
   text-align: center;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 25px;
   margin: 0;
   transition-duration: 200ms;
@@ -79,7 +79,7 @@ a {
 /*GRID*/
 .project-grid {
   display: grid;
-  grid-gap: 50px;
+  grid-gap: .6%;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 .box {
@@ -99,7 +99,7 @@ a {
     /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
 }
 .box > h1 {
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: 'Quicksand', sans-serif;
   font-size: 25px;
   margin: 5%;
   text-align: center;
@@ -117,7 +117,7 @@ a {
   border-radius: 4px;
 }
 footer {
-  font-family: "Raleway", sans-serif;
+    font-family: 'Quicksand', sans-serif;
   text-align: center;
   position: relative;
   bottom: 0;
