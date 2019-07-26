@@ -18,7 +18,7 @@ body {
     bottom: 0;
     min-width: 100%; 
     min-height: 100%;
-    z-index: -101;
+    z-index: -200;
   }
 /*NAVBAR*/
 .nav-items {
@@ -55,7 +55,7 @@ a {
 .title > h1 {
   text-align: center;
   font-family: 'Rubik', sans-serif;
-  font-size: 125px;
+  font-size: 100px;
   margin: 0;
   transition-duration: 200ms;
 }
