@@ -2,27 +2,26 @@ body {
   margin: 0;
   padding: 0;
 }
-.tint{
-    
-    background-image: linear-gradient(rgba(200,200,200,0.5), white);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
-    z-index: -100;
+.tint {
+  background-image: linear-gradient(rgba(200, 200, 200, 0.5), white);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
 }
 #myVideo {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
-    z-index: -200;
-  }
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -200;
+}
 /*NAVBAR*/
 .nav-items {
-    font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   list-style: none;
@@ -33,7 +32,7 @@ li {
   padding: 20px;
 }
 li:hover a {
-    border-radius: 2px;
+  border-radius: 2px;
   background-color: black;
   color: white;
 }
@@ -47,14 +46,14 @@ a {
 
 /*MAIN TITLE COVER*/
 .title {
-    margin-top: 10%;
+  margin-top: 10%;
   display: block;
   height: 50vh;
   cursor: default;
 }
 .title > h1 {
   text-align: center;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 100px;
   margin: 0;
   transition-duration: 200ms;
@@ -71,7 +70,7 @@ a {
 }*/
 .title > p {
   text-align: center;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 25px;
   margin: 0;
   transition-duration: 200ms;
@@ -79,7 +78,7 @@ a {
 /*GRID*/
 .project-grid {
   display: grid;
-  grid-gap: .6%;
+  grid-gap: 0.6%;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 .box {
@@ -90,16 +89,16 @@ a {
 }
 .box:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
+  /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
   -moz-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
+  /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
   -o-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
+  /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
   box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
+  /*inset rgba(0, 0, 0, 0.15) 0px -10px 20px;*/
 }
 .box > h1 {
-    font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 25px;
   margin: 5%;
   text-align: center;
@@ -117,7 +116,7 @@ a {
   border-radius: 4px;
 }
 footer {
-    font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   text-align: center;
   position: relative;
   bottom: 0;
