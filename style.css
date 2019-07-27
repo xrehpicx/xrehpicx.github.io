@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 .tint {
-  background-image: linear-gradient(rgba(200, 200, 200, 0.5), white);
+  background-image: linear-gradient(rgba(200, 200, 200, 0.5), black);
   position: absolute;
   right: 0;
   bottom: 0;
@@ -33,12 +33,12 @@ li {
 }
 li:hover a {
   border-radius: 2px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 a {
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 10px;
   transition-duration: 200ms;
