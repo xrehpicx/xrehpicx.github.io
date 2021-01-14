@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.df169ec0.chunk.css",
-    "main.js": "/static/js/main.2de3d292.chunk.js",
-    "main.js.map": "/static/js/main.2de3d292.chunk.js.map",
+    "main.css": "/static/css/main.da4f7cf5.chunk.css",
+    "main.js": "/static/js/main.6f295cfc.chunk.js",
+    "main.js.map": "/static/js/main.6f295cfc.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.61b689d9.js",
     "runtime-main.js.map": "/static/js/runtime-main.61b689d9.js.map",
     "static/js/2.f127929b.chunk.js": "/static/js/2.f127929b.chunk.js",
@@ -12,7 +12,7 @@
     "index.html": "/index.html",
     "service-worker.js": "/service-worker.js",
     "service-worker.js.map": "/service-worker.js.map",
-    "static/css/main.df169ec0.chunk.css.map": "/static/css/main.df169ec0.chunk.css.map",
+    "static/css/main.da4f7cf5.chunk.css.map": "/static/css/main.da4f7cf5.chunk.css.map",
     "static/js/2.f127929b.chunk.js.LICENSE.txt": "/static/js/2.f127929b.chunk.js.LICENSE.txt",
     "static/media/atria.bcb7328f.png": "/static/media/atria.bcb7328f.png",
     "static/media/blue.cbca6f5c.jpg": "/static/media/blue.cbca6f5c.jpg",
@@ -22,7 +22,7 @@
   "entrypoints": [
     "static/js/runtime-main.61b689d9.js",
     "static/js/2.f127929b.chunk.js",
-    "static/css/main.df169ec0.chunk.css",
-    "static/js/main.2de3d292.chunk.js"
+    "static/css/main.da4f7cf5.chunk.css",
+    "static/js/main.6f295cfc.chunk.js"
   ]
 }
