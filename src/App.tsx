@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>test</p>
+        <p>portfolio still under development</p>
         <a
           className="App-link"
           href="https://instagram.com/xrehpicx"
