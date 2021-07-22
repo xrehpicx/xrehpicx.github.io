@@ -87,6 +87,9 @@ const FixedAbout = styled.div`
   .can {
     font-size: 1.5rem;
     font-weight: 400;
+    display: inline-block;
+    margin-left: 10px;
+    min-width: 120px;
   }
 `;
 
@@ -129,15 +132,22 @@ function About({ serverState }: AboutProps) {
             xrehpicx
           </a>
         </motion.div>
+
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="big-message"
         >
           Raj Sharma
-          <motion.span layout className="can">
-            {status}
-          </motion.span>
+          {!!status && (
+            <motion.span
+              initial={{ minWidth: "0px", y: 20, opacity: 0 }}
+              animate={{ minWidth: "120px", y: 0, opacity: 1 }}
+              className="can"
+            >
+              {status}
+            </motion.span>
+          )}
         </motion.h1>
 
         <motion.div
