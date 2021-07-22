@@ -91,7 +91,7 @@ interface AboutProps {
   serverState: boolean;
 }
 
-const stats: string[] = ["designer", "developer"];
+const stats: string[] = ["designer", "developer", "student"];
 
 function About({ serverState }: AboutProps) {
   const { result: status, dencrypt } = useDencrypt({ interval: 20 });
