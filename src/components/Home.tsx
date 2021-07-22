@@ -106,6 +106,7 @@ function About({ serverState }: AboutProps) {
         return;
       }
       i = 0;
+      dencrypt(" " + stats[i]);
     }, 2000);
   }, [dencrypt]);
   return (
