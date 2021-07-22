@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { getProjects, wakeupServer } from "../utils/api";
 import { useDencrypt } from "use-dencrypt-effect";
@@ -196,7 +196,7 @@ const ScrollWorks = styled(motion.div)`
 
 function Works() {
   const [works, setWorks] = useState<ProjectType[]>([]);
-
+  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     getProjects().then(setWorks);
   }, []);
@@ -204,10 +204,13 @@ function Works() {
     <>
       {!!works.length ? (
         <ScrollWorks
+          ref={containerRef}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <h4>My Works</h4>
+          <h4 onClick={() => containerRef.current?.scrollIntoView()}>
+            My Works
+          </h4>
           <div className="works">
             {works.map((p, i) => (
               <StyledWork project={p} key={i} />
