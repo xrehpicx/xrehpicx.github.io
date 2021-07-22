@@ -5,7 +5,7 @@ import { getProjects, wakeupServer } from "../utils/api";
 import { useDencrypt } from "use-dencrypt-effect";
 import { ProjectType } from "./types";
 import { setInterval } from "timers";
-import { stat } from "fs";
+
 const StyledHome = styled.div`
   background: ${(p) => p.theme.colors.main.background};
   .gap {
