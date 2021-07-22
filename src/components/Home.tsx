@@ -187,6 +187,7 @@ const ScrollWorks = styled(motion.div)`
 
   h4 {
     opacity: 0.8;
+    user-select: none;
   }
 
   .works {
@@ -246,7 +247,7 @@ const StyledWork = styled(Work)<WorkProps>`
   h2 {
     width: fit-content;
     cursor: ${(p) => (Object.values(p.project.links).length ? "pointer" : "")};
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .about-project {
     display: flex;
@@ -297,7 +298,7 @@ function TextLoader({ text }: { text: string }) {
   useEffect(() => {
     const interv = setInterval(() => {
       dencrypt("xrehpicx");
-      setTimeout(() => dencrypt(text), 11);
+      setTimeout(() => dencrypt(text), 10);
     }, 1500);
     return () => clearInterval(interv);
   }, [dencrypt, text]);
