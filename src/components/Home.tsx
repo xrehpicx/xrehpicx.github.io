@@ -14,7 +14,10 @@ const StyledHome = styled.div`
   }
   @media (max-width: 500px) {
     .gap {
-      height: 93vh;
+      height: 87vh;
+    }
+    html {
+      height: 100%;
     }
   }
 `;
@@ -237,8 +240,9 @@ const StyledWork = styled(Work)<WorkProps>`
   }};
 
   h2 {
+    width: fit-content;
     cursor: ${(p) => (Object.values(p.project.links).length ? "pointer" : "")};
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .about-project {
     display: flex;

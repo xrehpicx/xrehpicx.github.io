@@ -17,7 +17,7 @@ const defaultlighttheme: DefaultTheme = {
   colors: {
     main: {
       type: "light",
-      accent: "#4faaff",
+      accent: "#29ffa6",
       background: "#ffffff",
       text: "#000",
     },
