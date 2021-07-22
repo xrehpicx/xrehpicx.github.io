@@ -75,21 +75,30 @@ const FixedAbout = styled.div`
   .big-message {
     font-size: 4rem;
     margin: 10px 0;
-  }
-
-  @media (max-width: 500px) {
-    .big-message {
-      font-size: 2.5rem;
-      margin: 10px 0;
-    }
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 
   .can {
     font-size: 1.5rem;
     font-weight: 400;
-    display: inline-block;
-    margin-left: 10px;
+    /* display: inline-block; */
     min-width: 120px;
+    max-width: 130px;
+    overflow-y: hidden;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 500px) {
+    .big-message {
+      font-size: 2.3rem;
+      margin: 10px 0;
+    }
+    .can {
+      margin-left: 6px;
+      margin-bottom: 4px;
+    }
   }
 `;
 
