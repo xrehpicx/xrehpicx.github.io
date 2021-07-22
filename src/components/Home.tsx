@@ -212,6 +212,25 @@ const ScrollWorks = styled(motion.div)`
   .works {
     margin-top: 10px;
   }
+  a {
+    text-decoration: none;
+    color: ${(p) => p.theme.colors.main.background};
+    margin-right: 10px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .links a {
+    opacity: 0.6;
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;
 
 function Works() {
@@ -235,6 +254,36 @@ function Works() {
             {works.map((p, i) => (
               <StyledWork project={p} key={i} />
             ))}
+          </div>
+          <div className="links">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="mailto:raj.fps2000@gmail.com"
+            >
+              email
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://instagram.com/xrehpicx"
+            >
+              instagram
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.youtube.com/channel/UCbOz1gtKF_BP00uCQhNan_w"
+            >
+              youtube
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/xrehpicx"
+            >
+              github
+            </a>
           </div>
         </ScrollWorks>
       ) : (
