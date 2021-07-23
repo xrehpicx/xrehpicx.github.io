@@ -251,7 +251,7 @@ function Works() {
           </h4>
           <div className="works">
             {works.map((p, i) => (
-              <StyledWork project={p} key={i} />
+              <StyledWork project={p} key={window.btoa(p.title)} />
             ))}
           </div>
           <div className="links">
