@@ -15,9 +15,9 @@ const StyledHome = styled.div`
     .gap {
       height: ${(p) => {
         if (window.matchMedia("(display-mode: standalone)").matches) {
-          return "93.5vh";
+          return "87vh";
         }
-        return "87vh";
+        return "93.5vh";
       }};
     }
   }
