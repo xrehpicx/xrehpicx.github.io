@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { getProjects, wakeupServer } from "../utils/api";
 import { useDencrypt } from "use-dencrypt-effect";
 import { ProjectType } from "./types";
-
+import version from "../version.json";
 const StyledHome = styled.div`
   background: ${(p) => p.theme.colors.main.background};
   .gap {
@@ -18,18 +18,36 @@ const StyledHome = styled.div`
   }
 `;
 
+const VersionText = styled(TextGlitch)`
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.5;
+  margin: 6px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+`;
+
 export function Home() {
-  const [serverState, setServerState] = useState(false);
+  const [serverState, setServerState] = useState(0);
   useEffect(() => {
     wakeupServer()
       .then(setServerState)
-      .catch(() => setServerState(false));
+      .catch(() => setServerState(-1));
   }, []);
   return (
     <StyledHome>
       <About serverState={serverState} />
       <div className="gap"></div>
-      {serverState ? <Works /> : <TextLoader text="waking up my server..." />}
+      {serverState > 0 ? (
+        <Works />
+      ) : (
+        <TextLoader
+          failed={serverState < 0 ? "failed to get works" : ""}
+          text="waking up my server..."
+        />
+      )}
+      <VersionText text={"v" + version.version} />
     </StyledHome>
   );
 }
@@ -99,7 +117,7 @@ const FixedAbout = styled.div`
 `;
 
 interface AboutProps {
-  serverState: boolean;
+  serverState: boolean | number;
 }
 
 const stats: string[] = ["designer", "developer", "student"];
@@ -232,8 +250,13 @@ const ScrollWorks = styled(motion.div)`
 function Works() {
   const [works, setWorks] = useState<ProjectType[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [failedreq, setFailedreq] = useState("");
   useEffect(() => {
-    getProjects().then(setWorks);
+    getProjects()
+      .then(setWorks)
+      .catch(() => {
+        setFailedreq("request failed");
+      });
   }, []);
   return (
     <>
@@ -283,7 +306,7 @@ function Works() {
           </div>
         </ScrollWorks>
       ) : (
-        <TextLoader text="fetching works..." />
+        <TextLoader failed={failedreq} text="fetching works..." />
       )}
     </>
   );
@@ -350,14 +373,43 @@ function Work({ project, className }: WorkProps) {
   );
 }
 
-const StyledWakeup = styled(motion.div)`
+const StyledWakeup = styled(motion.div)<{ failed?: string }>`
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${(p) => p.theme.colors.main.accent};
+  color: ${(p) => (!p.failed ? p.theme.colors.main.accent : "red")};
+
   opacity: 0.6;
 `;
-function TextLoader({ text }: { text: string }) {
+
+function TextGlitch({
+  text,
+  className,
+  interval,
+}: {
+  text: string;
+  className?: string;
+  interval?: number;
+}) {
+  const { result, dencrypt } = useDencrypt({ interval: interval || 10 });
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
+    const interv = setInterval(() => {
+      dencrypt("x");
+      timeout = setTimeout(() => dencrypt(text), interval || 10);
+    }, 1500);
+    return () => {
+      clearInterval(interv);
+      timeout && clearTimeout(timeout);
+    };
+  }, [dencrypt, text, interval]);
+  return <p className={className}>{result}</p>;
+}
+
+function TextLoader({ text, failed }: { text: string; failed?: string }) {
   const { result, dencrypt } = useDencrypt({ interval: 10 });
 
   useEffect(() => {
@@ -372,8 +424,8 @@ function TextLoader({ text }: { text: string }) {
     };
   }, [dencrypt, text]);
   return (
-    <StyledWakeup>
-      <p>{result}</p>
+    <StyledWakeup failed={failed}>
+      <p>{failed || result}</p>
     </StyledWakeup>
   );
 }

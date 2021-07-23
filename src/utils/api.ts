@@ -9,5 +9,5 @@ export async function getProjects() {
   return data;
 }
 export async function wakeupServer() {
-  return !!(await axios.get(endpoint + "notion/"));
+  return Number(!!(await axios.get(endpoint + "notion/")));
 }
