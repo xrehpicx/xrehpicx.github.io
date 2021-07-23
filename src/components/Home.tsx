@@ -13,11 +13,14 @@ const StyledHome = styled.div`
   }
   @media (max-width: 500px) {
     .gap {
-      height: 87vh;
+      height: ${(p) => {
+        if (window.matchMedia("(display-mode: standalone)").matches) {
+          return "87vh";
+        }
+        return "93.5vh";
+      }};
     }
-    html {
-      height: 100%;
-    }
+    
   }
 `;
 
