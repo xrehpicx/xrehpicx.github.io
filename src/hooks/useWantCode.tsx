@@ -6,10 +6,10 @@ export function useWantCode(theme: DefaultTheme) {
     if (theme) {
       console.clear();
       console.log(
-        "%cHeyy",
-        `color:${theme.colors.main.accent};font-size:2rem;`
+        "%cHeyy\n%clooking for the code?\ncheck out the repo here: https://github.com/xrehpicx/xrehpicx.github.io",
+        `color:${theme.colors.main.accent};font-size:2rem;`,
+        `color:white;font-size:0.8rem;`
       );
-      console.log("%clooking for the code?", `color:white;`);
     }
   }, [theme]);
 }
