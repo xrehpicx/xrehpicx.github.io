@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "prebuild": "node auto-increment.js && git add . && git commit -m updated-version",
+    "prebuild": "node auto-increment.js && git add . && git commit -m updated-version && git push",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
