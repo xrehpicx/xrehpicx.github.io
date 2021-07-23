@@ -12,3 +12,9 @@ declare module "styled-components" {
     };
   }
 }
+
+declare global {
+  interface Window {
+    data: any;
+  }
+}

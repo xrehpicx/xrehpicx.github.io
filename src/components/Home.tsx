@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { getProjects, wakeupServer } from "../utils/api";
 import { useDencrypt } from "use-dencrypt-effect";
 import { ProjectType } from "./types";
-import { setInterval } from "timers";
 
 const StyledHome = styled.div`
   background: ${(p) => p.theme.colors.main.background};
@@ -363,18 +362,21 @@ const StyledWakeup = styled(motion.div)`
 `;
 function TextLoader({ text }: { text: string }) {
   const { result, dencrypt } = useDencrypt({ interval: 10 });
+
   useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
     const interv = setInterval(() => {
       dencrypt("xrehpicx");
-      setTimeout(() => dencrypt(text), 10);
+      timeout = setTimeout(() => dencrypt(text), 10);
     }, 1500);
-    return () => clearInterval(interv);
+    return () => {
+      clearInterval(interv);
+      timeout && clearTimeout(timeout);
+    };
   }, [dencrypt, text]);
   return (
     <StyledWakeup>
-      <motion.p initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
-        {result}
-      </motion.p>
+      <p>{result}</p>
     </StyledWakeup>
   );
 }
