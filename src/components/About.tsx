@@ -1,24 +1,11 @@
 import { useDencrypt } from "use-dencrypt-effect";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useViewportScroll,
-} from "framer-motion";
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { motion } from "framer-motion";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
 import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
+import { useLookatme } from "../hooks/useLookatme";
 
 const FixedAbout = styled.div`
   --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
@@ -69,7 +56,6 @@ const FixedAbout = styled.div`
   .can {
     font-size: 1.5rem;
     font-weight: 400;
-    /* display: inline-block; */
     min-width: 120px;
     max-width: 130px;
     overflow-y: hidden;
@@ -95,50 +81,6 @@ interface AboutProps {
 
 const stats: string[] = ["designer", "developer", "student"];
 
-function useLookatme() {
-  const xm = useMotionValue(0);
-  const ym = useMotionValue(0);
-
-  const motiondivider = 30;
-  const x = useTransform(
-    xm,
-    [-window.innerWidth, window.innerWidth],
-    [-window.innerWidth / motiondivider, window.innerWidth / motiondivider]
-  );
-  const y = useTransform(
-    ym,
-    [-window.innerHeight, window.innerHeight],
-    [-window.innerHeight / motiondivider, window.innerHeight / motiondivider]
-  );
-
-  const xr = useMotionValue(200);
-  const yr = useMotionValue(200);
-
-  const angle = 10;
-
-  const rotateX = useTransform(ym, [0, 400], [angle, -angle]);
-  const rotateY = useTransform(xm, [0, 400], [-angle, angle]);
-
-  const handleMouse = useCallback(
-    function (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-      xm.set(event.clientX - window.innerWidth / 2);
-      ym.set(event.clientY - window.innerHeight / 2);
-
-      const rect = event.currentTarget.getBoundingClientRect();
-
-      xr.set(event.clientX - rect.left);
-      yr.set(event.clientY - rect.top);
-    },
-    [xm, xr, ym, yr]
-  );
-
-  const looker = useMemo(
-    () => ({ x, y, rotateX, rotateY, handleMouse }),
-    [x, y, rotateX, rotateY, handleMouse]
-  );
-  return looker;
-}
-
 export function About({ serverState }: AboutProps) {
   const { result: status, dencrypt } = useDencrypt({ interval: 20 });
 
@@ -156,46 +98,15 @@ export function About({ serverState }: AboutProps) {
     }, 2000);
   }, [dencrypt]);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const motiondivider = 30;
-  const X = useTransform(
-    x,
-    [-window.innerWidth, window.innerWidth],
-    [-window.innerWidth / motiondivider, window.innerWidth / motiondivider]
-  );
-  const Y = useTransform(
-    y,
-    [-window.innerHeight, window.innerHeight],
-    [-window.innerHeight / motiondivider, window.innerHeight / motiondivider]
-  );
-
-  const xr = useMotionValue(200);
-  const yr = useMotionValue(200);
-
-  const angle = 10;
-
-  const rotateX = useTransform(y, [0, 400], [angle, -angle]);
-  const rotateY = useTransform(x, [0, 400], [-angle, angle]);
-
-  function handleMouse(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    x.set(event.clientX - window.innerWidth / 2);
-    y.set(event.clientY - window.innerHeight / 2);
-
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    xr.set(event.clientX - rect.left);
-    yr.set(event.clientY - rect.top);
-  }
+  const { x, y, rotateX, rotateY, handleMouse } = useLookatme();
 
   return (
     <FixedAbout onMouseMove={handleMouse}>
       <Header />
       <motion.div
         style={{
-          x: X,
-          y: Y,
+          x,
+          y,
           rotateX,
           rotateY,
         }}
