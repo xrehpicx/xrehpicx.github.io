@@ -1,6 +1,20 @@
 import { useDencrypt } from "use-dencrypt-effect";
-import { motion } from "framer-motion";
-import React, { useContext, useEffect } from "react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useViewportScroll,
+} from "framer-motion";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
@@ -66,6 +80,7 @@ const FixedAbout = styled.div`
     .big-message {
       font-size: 2.3rem;
       margin: 10px 0;
+      cursor: grabbing;
     }
     .can {
       margin-left: 6px;
@@ -79,6 +94,50 @@ interface AboutProps {
 }
 
 const stats: string[] = ["designer", "developer", "student"];
+
+function useLookatme() {
+  const xm = useMotionValue(0);
+  const ym = useMotionValue(0);
+
+  const motiondivider = 30;
+  const x = useTransform(
+    xm,
+    [-window.innerWidth, window.innerWidth],
+    [-window.innerWidth / motiondivider, window.innerWidth / motiondivider]
+  );
+  const y = useTransform(
+    ym,
+    [-window.innerHeight, window.innerHeight],
+    [-window.innerHeight / motiondivider, window.innerHeight / motiondivider]
+  );
+
+  const xr = useMotionValue(200);
+  const yr = useMotionValue(200);
+
+  const angle = 10;
+
+  const rotateX = useTransform(ym, [0, 400], [angle, -angle]);
+  const rotateY = useTransform(xm, [0, 400], [-angle, angle]);
+
+  const handleMouse = useCallback(
+    function (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+      xm.set(event.clientX - window.innerWidth / 2);
+      ym.set(event.clientY - window.innerHeight / 2);
+
+      const rect = event.currentTarget.getBoundingClientRect();
+
+      xr.set(event.clientX - rect.left);
+      yr.set(event.clientY - rect.top);
+    },
+    [xm, xr, ym, yr]
+  );
+
+  const looker = useMemo(
+    () => ({ x, y, rotateX, rotateY, handleMouse }),
+    [x, y, rotateX, rotateY, handleMouse]
+  );
+  return looker;
+}
 
 export function About({ serverState }: AboutProps) {
   const { result: status, dencrypt } = useDencrypt({ interval: 20 });
@@ -96,10 +155,53 @@ export function About({ serverState }: AboutProps) {
       dencrypt(" " + stats[i]);
     }, 2000);
   }, [dencrypt]);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const motiondivider = 30;
+  const X = useTransform(
+    x,
+    [-window.innerWidth, window.innerWidth],
+    [-window.innerWidth / motiondivider, window.innerWidth / motiondivider]
+  );
+  const Y = useTransform(
+    y,
+    [-window.innerHeight, window.innerHeight],
+    [-window.innerHeight / motiondivider, window.innerHeight / motiondivider]
+  );
+
+  const xr = useMotionValue(200);
+  const yr = useMotionValue(200);
+
+  const angle = 10;
+
+  const rotateX = useTransform(y, [0, 400], [angle, -angle]);
+  const rotateY = useTransform(x, [0, 400], [-angle, angle]);
+
+  function handleMouse(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    x.set(event.clientX - window.innerWidth / 2);
+    y.set(event.clientY - window.innerHeight / 2);
+
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    xr.set(event.clientX - rect.left);
+    yr.set(event.clientY - rect.top);
+  }
+
   return (
-    <FixedAbout>
+    <FixedAbout onMouseMove={handleMouse}>
       <Header />
-      <div>
+      <motion.div
+        style={{
+          x: X,
+          y: Y,
+          rotateX,
+          rotateY,
+        }}
+        drag
+        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      >
         <motion.div
           animate={{ y: 0, opacity: 0.6 }}
           initial={{ y: 100, opacity: 0 }}
@@ -167,7 +269,7 @@ export function About({ serverState }: AboutProps) {
             github
           </a>
         </motion.div>
-      </div>
+      </motion.div>
     </FixedAbout>
   );
 }
