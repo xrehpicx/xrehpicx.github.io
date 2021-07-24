@@ -2,6 +2,8 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    height: number;
+    width: number;
     colors: {
       main: {
         type: "dark" | "light";

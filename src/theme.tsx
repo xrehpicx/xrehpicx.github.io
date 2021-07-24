@@ -1,5 +1,7 @@
 import { createGlobalStyle, DefaultTheme } from "styled-components";
 export const defaultdarktheme: DefaultTheme = {
+  width: window.innerWidth,
+  height: window.innerHeight,
   colors: {
     main: {
       type: "dark",
@@ -10,6 +12,8 @@ export const defaultdarktheme: DefaultTheme = {
   },
 };
 export const defaultlighttheme: DefaultTheme = {
+  width: window.innerWidth,
+  height: window.innerHeight,
   colors: {
     main: {
       type: "light",

@@ -6,7 +6,6 @@ import { About } from "./About";
 import { TextLoader } from "./TextLoader";
 import { TextGlitch } from "./TextGlitch";
 import { Works } from "./Works";
-// import { GlobalContext } from "../contexts/GlobalContext";
 
 const StyledHome = styled.div`
   background: ${(p) => p.theme.colors.main.background};
@@ -16,7 +15,7 @@ const StyledHome = styled.div`
   }
   @media (max-width: 500px) {
     .gap {
-      height: ${(p) => window.innerHeight - 55}px;
+      height: ${(p) => (p.theme.height || window.innerHeight) - 55}px;
     }
   }
 `;
@@ -55,4 +54,3 @@ export function Home() {
     </StyledHome>
   );
 }
-

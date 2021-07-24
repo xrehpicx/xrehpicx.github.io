@@ -3,7 +3,10 @@ import { DefaultTheme } from "styled-components";
 import { IThemer } from "../components/types";
 import { Global, defaultdarktheme, defaultlighttheme } from "../theme";
 
-type actionprops = { type: "darkmode" | "toggle" | "lightmode"; payload?: any };
+type actionprops = {
+  type: "updatehw" | "darkmode" | "toggle" | "lightmode";
+  payload?: any;
+};
 
 function reducer(state: DefaultTheme, action: actionprops): DefaultTheme {
   switch (action.type) {
@@ -11,6 +14,10 @@ function reducer(state: DefaultTheme, action: actionprops): DefaultTheme {
       return defaultdarktheme;
     case "lightmode":
       return defaultlighttheme;
+    case "updatehw":
+      state.height = window.innerHeight;
+      state.width = window.innerWidth;
+      return state;
     case "toggle":
       return state.colors.main.type === "dark"
         ? defaultlighttheme
@@ -27,6 +34,12 @@ export function useThemer() {
       ? JSON.parse(localStorage.getItem("theme") || "")
       : defaultdarktheme
   );
+
+  useEffect(() => {
+    const update = () => dispatch({ type: "updatehw" });
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(theme));

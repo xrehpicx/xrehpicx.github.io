@@ -1,46 +1,68 @@
 import { useMotionValue, useTransform } from "framer-motion";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-export function useLookatme() {
+export function useLookatme({
+  angle = 10,
+  divider = 30,
+}: {
+  angle?: number;
+  divider?: number;
+}) {
+  const [returnStyle, setReturnstyle] = useState(false);
+
   const xm = useMotionValue(0);
   const ym = useMotionValue(0);
 
-  const motiondivider = 30;
   const x = useTransform(
     xm,
     [-window.innerWidth, window.innerWidth],
-    [-window.innerWidth / motiondivider, window.innerWidth / motiondivider]
+    [-window.innerWidth / divider, window.innerWidth / divider]
   );
   const y = useTransform(
     ym,
     [-window.innerHeight, window.innerHeight],
-    [-window.innerHeight / motiondivider, window.innerHeight / motiondivider]
+    [-window.innerHeight / divider, window.innerHeight / divider]
   );
 
   const xr = useMotionValue(200);
   const yr = useMotionValue(200);
-
-  const angle = 10;
 
   const rotateX = useTransform(ym, [0, 400], [angle, -angle]);
   const rotateY = useTransform(xm, [0, 400], [-angle, angle]);
 
   const handleMouse = useCallback(
     function (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-      xm.set(event.clientX - window.innerWidth / 2);
-      ym.set(event.clientY - window.innerHeight / 2);
+      if (window.innerWidth > 500) {
+        setReturnstyle(true);
+        xm.set(event.clientX - window.innerWidth / 2);
+        ym.set(event.clientY - window.innerHeight / 2);
 
-      const rect = event.currentTarget.getBoundingClientRect();
-
-      xr.set(event.clientX - rect.left);
-      yr.set(event.clientY - rect.top);
+        const rect = event.currentTarget.getBoundingClientRect();
+        xr.set(event.clientX - rect.left);
+        yr.set(event.clientY - rect.top);
+        return;
+      }
+      setReturnstyle(false);
     },
     [xm, xr, ym, yr]
   );
-
   const looker = useMemo(
-    () => ({ x, y, rotateX, rotateY, handleMouse }),
-    [x, y, rotateX, rotateY, handleMouse]
+    () => ({
+      style: returnStyle ? { x, y, rotateX, rotateY } : undefined,
+      handleMouse,
+    }),
+    [x, y, rotateX, rotateY, handleMouse, returnStyle]
   );
+
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 500) {
+        setReturnstyle(true);
+        return;
+      }
+      setReturnstyle(false);
+    });
+  }, []);
+
   return looker;
 }

@@ -98,18 +98,13 @@ export function About({ serverState }: AboutProps) {
     }, 2000);
   }, [dencrypt]);
 
-  const { x, y, rotateX, rotateY, handleMouse } = useLookatme();
+  const { style, handleMouse } = useLookatme({});
 
   return (
     <FixedAbout onMouseMove={handleMouse}>
       <Header />
       <motion.div
-        style={{
-          x,
-          y,
-          rotateX,
-          rotateY,
-        }}
+        style={style}
         drag
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
       >
