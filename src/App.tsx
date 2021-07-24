@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ThemeProvider } from "styled-components";
-import { useThemer } from "./hooks/useThemer";
-import { useWantCode } from "./hooks/useWantCode";
 import { Home } from "./components/Home";
+import { GlobalContext, GlobalContextProvider } from "./contexts/GlobalContext";
 
 // const StyledApp = styled.div``;
 
 function App() {
-  const { theme, Global } = useThemer();
-  useWantCode(theme);
+  const {
+    themer: { theme, Global },
+  } = useContext(GlobalContext);
   return (
     <ThemeProvider theme={theme}>
       <Global />
@@ -18,4 +18,10 @@ function App() {
   );
 }
 
-export default App;
+export default function A() {
+  return (
+    <GlobalContextProvider>
+      <App />
+    </GlobalContextProvider>
+  );
+}

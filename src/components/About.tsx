@@ -1,10 +1,16 @@
 import { useDencrypt } from "use-dencrypt-effect";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { GlobalContext } from "../contexts/GlobalContext";
+import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
+import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
 
 const FixedAbout = styled.div`
+  --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
+  font-weight: 600;
   height: 100vh;
+  z-index: 0;
   display: flex;
   color: ${(p) => p.theme.colors.main.accent};
   flex-direction: column;
@@ -15,6 +21,7 @@ const FixedAbout = styled.div`
   left: 0;
   width: 100%;
   padding: 20px;
+  transition: all 300ms ease-out;
 
   a {
     text-decoration: none;
@@ -27,7 +34,7 @@ const FixedAbout = styled.div`
   }
   .links a,
   .subtitle1 {
-    opacity: 0.6;
+    opacity: var(--dim);
     @media (max-width: 500px) {
       font-size: 1.5rem;
     }
@@ -91,6 +98,7 @@ export function About({ serverState }: AboutProps) {
   }, [dencrypt]);
   return (
     <FixedAbout>
+      <Header />
       <div>
         <motion.div
           animate={{ y: 0, opacity: 0.6 }}
@@ -161,5 +169,43 @@ export function About({ serverState }: AboutProps) {
         </motion.div>
       </div>
     </FixedAbout>
+  );
+}
+const StyledHeader = styled.header`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  padding: 20px;
+`;
+
+const LightButton = styled(motion(Brightness2RoundedIcon))`
+  cursor: pointer;
+`;
+const DarkButton = styled(motion(Brightness7RoundedIcon))`
+  cursor: pointer;
+`;
+
+function Header() {
+  const { themer } = useContext(GlobalContext);
+
+  return (
+    <StyledHeader>
+      {themer.theme.colors.main.type === "dark" ? (
+        <LightButton
+          initial={{ height: 0 }}
+          animate={{ height: "auto" }}
+          onTap={() => themer.dispatch({ type: "lightmode" })}
+        />
+      ) : (
+        <DarkButton
+          initial={{ height: 0 }}
+          animate={{ height: "auto" }}
+          onTap={() => themer.dispatch({ type: "darkmode" })}
+        />
+      )}
+    </StyledHeader>
   );
 }

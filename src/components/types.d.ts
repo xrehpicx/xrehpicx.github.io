@@ -1,3 +1,4 @@
+import { DefaultTheme } from "styled-components";
 export type ProjectType = {
   title: string;
   props: {
@@ -11,3 +12,10 @@ export type ProjectType = {
   };
   page?: any;
 };
+
+export interface IThemer {
+  theme: DefaultTheme;
+  Global: GlobalStyleComponent<{}, DefaultTheme>;
+  toggle: () => void;
+  dispatch: React.Dispatch<actionprops>;
+}

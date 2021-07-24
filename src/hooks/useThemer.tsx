@@ -1,7 +1,8 @@
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import { createGlobalStyle, DefaultTheme } from "styled-components";
+import { IThemer } from "../components/types";
 
-type actionprops = { type: string; payload?: any };
+type actionprops = { type: "darkmode" | "toggle" | "lightmode"; payload?: any };
 
 var accent = "";
 var background = "";
@@ -21,8 +22,8 @@ const defaultlighttheme: DefaultTheme = {
   colors: {
     main: {
       type: "light",
-      accent: "#29ffa6",
-      background: "#ffffff",
+      accent: "#050f18",
+      background: "#ececec",
       text: "#000",
     },
   },
@@ -53,19 +54,29 @@ const Global = createGlobalStyle`
       background = p.theme.colors.main.background;
       return p.theme.colors.main.background;
     }};
-    transition: color 100ms ease-out, background 100ms ease-out;
+    transition: background 300ms ease-out;
   }
 `;
 
 export function useThemer() {
-  const [theme, dispatch] = useReducer(reducer, defaultdarktheme);
+  const [theme, dispatch] = useReducer(
+    reducer,
+    localStorage.getItem("theme")
+      ? JSON.parse(localStorage.getItem("theme") || "")
+      : defaultdarktheme
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
 
   const toggle = useCallback(() => {
     console.log(dispatch({ type: "toggle" }));
   }, []);
 
-  const themer = useMemo(() => {
-    return { theme, Global, toggle };
+  const themer = useMemo<IThemer>(() => {
+    return { theme, Global, toggle, dispatch };
   }, [theme, toggle]);
+
   return themer;
 }
