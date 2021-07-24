@@ -15,7 +15,7 @@ export const StyledWork = styled(Work)<WorkProps>`
       return p.theme.colors.main.type === "light" ? 0.6 : 0.4;
     }
     if (p.project.props.status.name === "In development") {
-      return p.theme.colors.main.type === "light" ? 0.99999 : 0.8;
+      return p.theme.colors.main.type === "light" ? 0.9999 : 0.8;
     }
     if (p.project.props.status.name === "Completed") {
       return p.theme.colors.main.type === "light" ? 0.8 : 0.6;
