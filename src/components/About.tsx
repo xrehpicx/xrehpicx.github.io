@@ -167,10 +167,7 @@ export function About({ serverState, extras }: AboutProps) {
           if (y.get() < 0) {
             document.querySelector(".works-title")?.scrollIntoView();
           }
-          
         }}
-        /* onDrag={e=>{
-        }} */
         dragConstraints={{ top: 0, bottom: 0 }}
         onMouseMove={handleMouse}
       >
