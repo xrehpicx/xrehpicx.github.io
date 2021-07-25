@@ -193,8 +193,8 @@ export function About({ serverState, extras }: AboutProps) {
             >
               github
             </a>
-            <Header />
           </motion.div>
+          <Header />
         </motion.div>
       </FixedAbout>
     </>
