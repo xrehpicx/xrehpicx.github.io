@@ -9,7 +9,7 @@ import { useLookatme } from "../hooks/useLookatme";
 
 const FixedAbout = styled.div`
   --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
-  font-weight: 600;
+  font-weight: 400;
   height: 100vh;
   z-index: 0;
   display: flex;
