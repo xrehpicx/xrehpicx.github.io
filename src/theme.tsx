@@ -17,7 +17,7 @@ export const defaultlighttheme: DefaultTheme = {
   colors: {
     main: {
       type: "light",
-      accent: "#050f18",
+      accent: "#141825",
       background: "#ececec",
       text: "#000",
     },

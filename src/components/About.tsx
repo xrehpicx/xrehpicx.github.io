@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
 import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
-import { useLookatme } from "../hooks/useLookatme";
+import useLookatme from "../hooks/useLookatme";
 
 const FixedAbout = styled.div`
   --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
@@ -28,6 +28,9 @@ const FixedAbout = styled.div`
     text-decoration: none;
     color: ${(p) => p.theme.colors.main.accent};
     margin-right: 10px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   .links {
     display: flex;
@@ -105,7 +108,7 @@ export function About({ serverState }: AboutProps) {
       <Header />
       <motion.div
         style={style}
-        drag
+        drag={!!style}
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
       >
         <motion.div
@@ -125,7 +128,7 @@ export function About({ serverState }: AboutProps) {
 
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: 1, textShadow: `10px 10px 2px 2px white` }}
           className="big-message"
         >
           Raj Sharma

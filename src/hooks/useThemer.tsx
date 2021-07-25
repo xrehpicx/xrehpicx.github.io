@@ -41,13 +41,25 @@ export function useThemer() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
+  const toggle = useCallback(() => {
+    dispatch({ type: "toggle" });
+  }, []);
+  useEffect(() => {
+    let child: NodeJS.Timeout | null = null;
+    const main = setTimeout(() => {
+      toggle();
+      child = setTimeout(() => toggle(), 800);
+    }, 2000);
+
+    return () => {
+      clearTimeout(main);
+      child && clearTimeout(child);
+    };
+  }, [toggle]);
+
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(theme));
   }, [theme]);
-
-  const toggle = useCallback(() => {
-    console.log(dispatch({ type: "toggle" }));
-  }, []);
 
   const themer = useMemo<IThemer>(() => {
     return { theme, Global, toggle, dispatch };

@@ -1,7 +1,7 @@
 import { useMotionValue, useTransform } from "framer-motion";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-export function useLookatme({
+export default function useLookatme({
   angle = 10,
   divider = 30,
 }: {
@@ -19,6 +19,16 @@ export function useLookatme({
     [-window.innerWidth / divider, window.innerWidth / divider]
   );
   const y = useTransform(
+    ym,
+    [-window.innerHeight, window.innerHeight],
+    [-window.innerHeight / divider, window.innerHeight / divider]
+  );
+  const xshadow = useTransform(
+    xm,
+    [-window.innerWidth, window.innerWidth],
+    [-window.innerWidth / divider, window.innerWidth / divider]
+  );
+  const yshadow = useTransform(
     ym,
     [-window.innerHeight, window.innerHeight],
     [-window.innerHeight / divider, window.innerHeight / divider]
@@ -46,13 +56,6 @@ export function useLookatme({
     },
     [xm, xr, ym, yr]
   );
-  const looker = useMemo(
-    () => ({
-      style: returnStyle ? { x, y, rotateX, rotateY } : undefined,
-      handleMouse,
-    }),
-    [x, y, rotateX, rotateY, handleMouse, returnStyle]
-  );
 
   useEffect(() => {
     window.addEventListener("resize", function () {
@@ -63,6 +66,16 @@ export function useLookatme({
       setReturnstyle(false);
     });
   }, []);
+
+  const looker = useMemo(
+    () => ({
+      style: returnStyle
+        ? { x, y, rotateX, rotateY, xshadow, yshadow }
+        : undefined,
+      handleMouse,
+    }),
+    [x, y, rotateX, rotateY, handleMouse, returnStyle, xshadow, yshadow]
+  );
 
   return looker;
 }
