@@ -1,5 +1,5 @@
 import { useDencrypt } from "use-dencrypt-effect";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
@@ -121,11 +121,7 @@ export function About({ serverState, extras }: AboutProps) {
     <>
       <FixedAbout onMouseMove={handleMouse}>
         <Header />
-        <motion.div
-          style={style}
-          drag={!!style}
-          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-        >
+        <motion.div style={style}>
           <motion.div
             animate={{ y: 0, opacity: 0.6 }}
             initial={{ y: 100, opacity: 0 }}
@@ -235,7 +231,13 @@ function Header() {
         onTap={() => toggle()}
         className="theme-toggle"
       >
-        {theme.colors.main.type === "dark" ? <LightButton /> : <DarkButton />}
+        <AnimatePresence>
+          {theme.colors.main.type === "dark" ? (
+            <LightButton exit={{ opacity: 0, x: -10 }} />
+          ) : (
+            <DarkButton exit={{ opacity: 0, x: -10 }} />
+          )}
+        </AnimatePresence>
       </motion.div>
     </StyledHeader>
   );
