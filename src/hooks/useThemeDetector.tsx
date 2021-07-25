@@ -4,7 +4,7 @@ export default function useThemeDetector() {
   const getCurrentTheme = () =>
     window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
-  const mqListener = (e) => {
+  const mqListener = (e: any) => {
     setIsDarkTheme(e.matches);
   };
 
