@@ -17,7 +17,7 @@ function reducer(state: DefaultTheme, action: actionprops): DefaultTheme {
     case "updatehw":
       state.height = window.innerHeight;
       state.width = window.innerWidth;
-      return {...state};
+      return { ...state };
     case "toggle":
       return state.colors.main.type === "dark"
         ? defaultlighttheme

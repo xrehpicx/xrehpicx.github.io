@@ -1,12 +1,17 @@
+import { motion, MotionStyle } from "framer-motion";
 import React, { useEffect } from "react";
 import { useDencrypt } from "use-dencrypt-effect";
 
 export function TextGlitch({
-  text, className, interval,
+  text,
+  className,
+  interval,
+  style,
 }: {
   text: string;
   className?: string;
   interval?: number;
+  style?: MotionStyle;
 }) {
   const { result, dencrypt } = useDencrypt({ interval: interval || 10 });
 
@@ -21,5 +26,9 @@ export function TextGlitch({
       timeout && clearTimeout(timeout);
     };
   }, [dencrypt, text, interval]);
-  return <p className={className}>{result}</p>;
+  return (
+    <motion.p style={style} className={className}>
+      {result}
+    </motion.p>
+  );
 }

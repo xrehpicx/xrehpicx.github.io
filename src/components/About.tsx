@@ -182,11 +182,12 @@ export function About({ serverState }: AboutProps) {
     </FixedAbout>
   );
 }
-const StyledHeader = styled(motion.header)`
-  position: absolute;
+const StyledHeader = styled(motion.div)`
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
+  justify-content: flex-end;
   width: 100%;
   padding: 20px;
 
@@ -203,24 +204,19 @@ const DarkButton = styled(motion(Brightness7RoundedIcon))`
 `;
 
 function Header() {
-  const { themer } = useContext(GlobalContext);
+  const {
+    themer: { theme, toggle },
+  } = useContext(GlobalContext);
 
   return (
-    <StyledHeader
-      initial={{ justifyContent: "center" }}
-      animate={{ justifyContent: "flex-end" }}
-    >
-      {themer.theme.colors.main.type === "dark" ? (
-        <LightButton
-          layout
-          onTap={() => themer.dispatch({ type: "lightmode" })}
-        />
-      ) : (
-        <DarkButton
-          layout
-          onTap={() => themer.dispatch({ type: "darkmode" })}
-        />
-      )}
+    <StyledHeader>
+      <motion.div
+        whileTap={{ scale: 2 }}
+        onTap={() => toggle()}
+        className="theme-toggle"
+      >
+        {theme.colors.main.type === "dark" ? <LightButton /> : <DarkButton />}
+      </motion.div>
     </StyledHeader>
   );
 }
