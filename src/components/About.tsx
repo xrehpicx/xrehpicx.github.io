@@ -1,12 +1,11 @@
 import { useDencrypt } from "use-dencrypt-effect";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
 import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
 import useLookatme from "../hooks/useLookatme";
-import { TextGlitch } from "./TextGlitch";
 
 const FixedAbout = styled(motion.div)`
   --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
@@ -85,7 +84,7 @@ interface AboutProps {
 }
 
 const stats: string[] = ["designer", "developer", "student"];
-const RefreshMenu = styled(motion.div)`
+/* const RefreshMenu = styled(motion.div)`
   background-color: ${(p) => p.theme.colors.main.accent};
   color: ${(p) => p.theme.colors.main.background};
   display: flex;
@@ -98,7 +97,7 @@ const RefreshMenu = styled(motion.div)`
 
 const RefershMenuText = styled(TextGlitch)`
   margin-bottom: 20px;
-`;
+`; */
 export function About({ serverState, extras }: AboutProps) {
   const { result: status, dencrypt } = useDencrypt({ interval: 20 });
 
@@ -118,59 +117,9 @@ export function About({ serverState, extras }: AboutProps) {
 
   const { style, handleMouse } = useLookatme({});
 
-  const y = useMotionValue(0);
-  const filter = useTransform(y, [0, 100], ["blur(0px)", "blur(10px)"]);
-
-  const height = useTransform(y, [0, 100], [0, 50]);
-  const height2 = useTransform(y, [100, 200], [0, 50]);
-
-  const reloadTextOpacity = useTransform(height, [20, 50], [0, 1]);
-  const reloadTexty = useTransform(height, [0, 50], [0, 10]);
-
-  const reloadTextOpacity2 = useTransform(height2, [20, 50], [0, 1]);
-  const reloadTexty2 = useTransform(height2, [0, 50], [0, 10]);
-
   return (
     <>
-      <RefreshMenu style={{ height }} className="refresh-menu">
-        <RefershMenuText
-          style={{ opacity: reloadTextOpacity, y: reloadTexty }}
-          text="release to reload"
-        ></RefershMenuText>
-      </RefreshMenu>
-      <RefreshMenu
-        style={{ height: height2, background: "red" }}
-        className="refresh-menu"
-      >
-        <RefershMenuText
-          style={{ opacity: reloadTextOpacity2, y: reloadTexty2 }}
-          text="release to hard reload"
-        ></RefershMenuText>
-      </RefreshMenu>
-      <FixedAbout
-        style={{ y, filter }}
-        drag="y"
-        onDragEnd={(e) => {
-          const h = height.get();
-          const h2 = height2.get();
-          if (h <= 50 && h > 40 && h2 <= 40) {
-            window.location.reload();
-            return;
-          }
-          if (h2 <= 50 && h2 > 40 && h <= 50) {
-            localStorage.clear();
-            // @ts-ignore
-            window.location.reload(true);
-            return;
-          }
-
-          if (y.get() < 0) {
-            document.querySelector(".works-title")?.scrollIntoView();
-          }
-        }}
-        dragConstraints={{ top: 0, bottom: 0 }}
-        onMouseMove={handleMouse}
-      >
+      <FixedAbout onMouseMove={handleMouse}>
         <Header />
         <motion.div
           style={style}
