@@ -27,12 +27,16 @@ function reducer(state: DefaultTheme, action: actionprops): DefaultTheme {
   }
 }
 
+const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
 export function useThemer() {
   const [theme, dispatch] = useReducer(
     reducer,
     localStorage.getItem("theme")
       ? JSON.parse(localStorage.getItem("theme") || "")
-      : defaultdarktheme
+      : darkModeQuery.matches
+      ? defaultdarktheme
+      : defaultlighttheme
   );
 
   useEffect(() => {

@@ -182,14 +182,17 @@ export function About({ serverState }: AboutProps) {
     </FixedAbout>
   );
 }
-const StyledHeader = styled.header`
+const StyledHeader = styled(motion.header)`
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: row-reverse;
   width: 100%;
   padding: 20px;
+
+  svg {
+    display: block;
+  }
 `;
 
 const LightButton = styled(motion(Brightness2RoundedIcon))`
@@ -203,17 +206,18 @@ function Header() {
   const { themer } = useContext(GlobalContext);
 
   return (
-    <StyledHeader>
+    <StyledHeader
+      initial={{ justifyContent: "center" }}
+      animate={{ justifyContent: "flex-end" }}
+    >
       {themer.theme.colors.main.type === "dark" ? (
         <LightButton
-          initial={{ height: 0 }}
-          animate={{ height: "auto" }}
+          layout
           onTap={() => themer.dispatch({ type: "lightmode" })}
         />
       ) : (
         <DarkButton
-          initial={{ height: 0 }}
-          animate={{ height: "auto" }}
+          layout
           onTap={() => themer.dispatch({ type: "darkmode" })}
         />
       )}
