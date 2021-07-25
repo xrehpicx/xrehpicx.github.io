@@ -31,6 +31,7 @@ const VersionText = styled(TextGlitch)`
     monospace;
 `;
 
+/*
 const SideMenu = styled(motion.div)`
   top: 0;
   left: 0;
@@ -39,7 +40,7 @@ const SideMenu = styled(motion.div)`
   width: 100px;
   height: ${(p) => p.theme.height}px;
   background: ${(p) => p.theme.colors.main.accent};
-`;
+`; */
 
 export function Home() {
   const [serverState, setServerState] = useState(0);
@@ -54,7 +55,6 @@ export function Home() {
 
   return (
     <>
-      <SideMenu style={{ width: x }}></SideMenu>
       <StyledHome
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
