@@ -61,7 +61,7 @@ export function Works() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <h4 onClick={() => containerRef.current?.scrollIntoView()}>
+          <h4 className="works-title" onClick={() => containerRef.current?.scrollIntoView()}>
             My Works
           </h4>
           <div className="works">

@@ -1,13 +1,14 @@
 import { useDencrypt } from "use-dencrypt-effect";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Brightness2RoundedIcon from "@material-ui/icons/Brightness2Rounded";
 import Brightness7RoundedIcon from "@material-ui/icons/Brightness7Rounded";
 import useLookatme from "../hooks/useLookatme";
+import { TextGlitch } from "./TextGlitch";
 
-const FixedAbout = styled.div`
+const FixedAbout = styled(motion.div)`
   --dim: ${(p) => (p.theme.colors.main.type === "light" ? 1 : 0.6)};
   font-weight: 400;
   height: 100vh;
@@ -80,11 +81,25 @@ const FixedAbout = styled.div`
 
 interface AboutProps {
   serverState: boolean | number;
+  extras?: any;
 }
 
 const stats: string[] = ["designer", "developer", "student"];
+const RefreshMenu = styled(motion.div)`
+  background-color: ${(p) => p.theme.colors.main.accent};
+  color: ${(p) => p.theme.colors.main.background};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    margin: 10px;
+  }
+`;
 
-export function About({ serverState }: AboutProps) {
+const RefershMenuText = styled(TextGlitch)`
+  margin-bottom: 20px;
+`;
+export function About({ serverState, extras }: AboutProps) {
   const { result: status, dencrypt } = useDencrypt({ interval: 20 });
 
   useEffect(() => {
@@ -103,83 +118,142 @@ export function About({ serverState }: AboutProps) {
 
   const { style, handleMouse } = useLookatme({});
 
+  const y = useMotionValue(0);
+  const filter = useTransform(y, [0, 100], ["blur(0px)", "blur(10px)"]);
+
+  const height = useTransform(y, [0, 100], [0, 50]);
+  const height2 = useTransform(y, [100, 200], [0, 50]);
+
+  const reloadTextOpacity = useTransform(height, [20, 50], [0, 1]);
+  const reloadTexty = useTransform(height, [0, 50], [0, 10]);
+
+  const reloadTextOpacity2 = useTransform(height2, [20, 50], [0, 1]);
+  const reloadTexty2 = useTransform(height2, [0, 50], [0, 10]);
+
   return (
-    <FixedAbout onMouseMove={handleMouse}>
-      <Header />
-      <motion.div
-        style={style}
-        drag={!!style}
-        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+    <>
+      <RefreshMenu style={{ height }} className="refresh-menu">
+        <RefershMenuText
+          style={{ opacity: reloadTextOpacity, y: reloadTexty }}
+          text="release to reload"
+        ></RefershMenuText>
+      </RefreshMenu>
+      <RefreshMenu
+        style={{ height: height2, background: "red" }}
+        className="refresh-menu"
       >
-        <motion.div
-          animate={{ y: 0, opacity: 0.6 }}
-          initial={{ y: 100, opacity: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <a
-            target="_blank"
-            className="subtitle1"
-            rel="noreferrer"
-            href="https://instagram.com/xrehpicx"
-          >
-            xrehpicx
-          </a>
-        </motion.div>
+        <RefershMenuText
+          style={{ opacity: reloadTextOpacity2, y: reloadTexty2 }}
+          text="release to hard reload"
+        ></RefershMenuText>
+      </RefreshMenu>
+      <FixedAbout
+        style={{ y, filter }}
+        drag="y"
+        onDragEnd={(e) => {
+          const h = height.get();
+          const h2 = height2.get();
+          if (h <= 50 && h > 40 && h2 <= 40) {
+            window.location.reload();
+            return;
+          }
+          if (h2 <= 50 && h2 > 40 && h <= 50) {
+            localStorage.clear();
+            // @ts-ignore
+            window.location.reload(true);
+            return;
+          }
 
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1, textShadow: `10px 10px 2px 2px white` }}
-          className="big-message"
+          if (y.get() < 0) {
+            document.querySelector(".works-title")?.scrollIntoView();
+          }
+          
+        }}
+        /* onDrag={e=>{
+        }} */
+        dragConstraints={{ top: 0, bottom: 0 }}
+        onMouseMove={handleMouse}
+      >
+        <Header />
+        <motion.div
+          style={style}
+          drag={!!style}
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         >
-          Raj Sharma
-          {!!status && (
-            <motion.span
-              initial={{ minWidth: "0px", y: 20, opacity: 0 }}
-              animate={{ minWidth: "120px", y: 0, opacity: 1 }}
-              className="can"
+          <motion.div
+            animate={{ y: 0, opacity: 0.6 }}
+            initial={{ y: 100, opacity: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <a
+              target="_blank"
+              className="subtitle1"
+              rel="noreferrer"
+              href="https://instagram.com/xrehpicx"
             >
-              {status}
-            </motion.span>
-          )}
-        </motion.h1>
+              xrehpicx
+            </a>
+          </motion.div>
 
-        <motion.div
-          className="links"
-          transition={{ delay: 0.5 }}
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 0.6 }}
-        >
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="mailto:raj.fps2000@gmail.com"
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              textShadow: `10px 10px 2px 2px white`,
+            }}
+            className="big-message"
           >
-            email
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://instagram.com/xrehpicx"
+            Raj Sharma
+            {!!status && (
+              <motion.span
+                initial={{ minWidth: "0px", y: 20, opacity: 0 }}
+                animate={{ minWidth: "120px", y: 0, opacity: 1 }}
+                className="can"
+              >
+                {status}
+              </motion.span>
+            )}
+          </motion.h1>
+
+          <motion.div
+            className="links"
+            transition={{ delay: 0.5 }}
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 0.6 }}
           >
-            instagram
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.youtube.com/channel/UCbOz1gtKF_BP00uCQhNan_w"
-          >
-            youtube
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://github.com/xrehpicx"
-          >
-            github
-          </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="mailto:raj.fps2000@gmail.com"
+            >
+              email
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://instagram.com/xrehpicx"
+            >
+              instagram
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.youtube.com/channel/UCbOz1gtKF_BP00uCQhNan_w"
+            >
+              youtube
+            </a>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/xrehpicx"
+            >
+              github
+            </a>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </FixedAbout>
+      </FixedAbout>
+    </>
   );
 }
 const StyledHeader = styled(motion.div)`

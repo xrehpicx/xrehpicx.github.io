@@ -6,7 +6,7 @@ import { About } from "./About";
 import { TextLoader } from "./TextLoader";
 import { TextGlitch } from "./TextGlitch";
 import { Works } from "./Works";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const StyledHome = styled(motion.div)`
   background: ${(p) => p.theme.colors.main.background};
@@ -31,7 +31,7 @@ const VersionText = styled(TextGlitch)`
     monospace;
 `;
 
-const RefreshMenu = styled(motion.div)`
+/* const RefreshMenu = styled(motion.div)`
   background-color: ${(p) => p.theme.colors.main.accent};
   color: ${(p) => p.theme.colors.main.background};
   display: flex;
@@ -40,11 +40,11 @@ const RefreshMenu = styled(motion.div)`
   span {
     margin: 10px;
   }
-`;
+`; */
 
-const RefershMenuText = styled(TextGlitch)`
+/* const RefershMenuText = styled(TextGlitch)`
   margin-bottom: 20px;
-`;
+`; */
 
 export function Home() {
   const [serverState, setServerState] = useState(0);
@@ -54,34 +54,56 @@ export function Home() {
       .then(setServerState)
       .catch(() => setServerState(-1));
   }, []);
-  const y = useMotionValue(0);
+  /* const y = useMotionValue(0);
   const filter = useTransform(y, [0, 100], ["blur(0px)", "blur(10px)"]);
 
   const height = useTransform(y, [0, 100], [0, 50]);
-  const reloadTextOpacity = useTransform(y, [0, 100], [0, 1]);
-  const reloadTexty = useTransform(y, [0, 100], [0, 10]);
+  const height2 = useTransform(y, [100, 200], [0, 50]);
+
+  const reloadTextOpacity = useTransform(height, [20, 50], [0, 1]);
+  const reloadTexty = useTransform(height, [0, 50], [0, 10]);
+
+  const reloadTextOpacity2 = useTransform(height2, [20, 50], [0, 1]);
+  const reloadTexty2 = useTransform(height2, [0, 50], [0, 10]); */
 
   return (
     <>
-      <RefreshMenu style={{ height }} className="refresh-menu">
+      {/* <RefreshMenu style={{ height }} className="refresh-menu">
         <RefershMenuText
           style={{ opacity: reloadTextOpacity, y: reloadTexty }}
           text="release to reload"
         ></RefershMenuText>
       </RefreshMenu>
+      <RefreshMenu
+        style={{ height: height2, background: "red" }}
+        className="refresh-menu"
+      >
+        <RefershMenuText
+          style={{ opacity: reloadTextOpacity2, y: reloadTexty2 }}
+          text="release to hard reload"
+        ></RefershMenuText>
+      </RefreshMenu> */}
       <StyledHome
-        style={{ y, filter }}
+      /* style={{ y, filter }}
         drag="y"
         onDragEnd={() => {
           const h = height.get();
-          if (h <= 50 && h > 40) {
+          const h2 = height2.get();
+          if (h <= 50 && h > 40 && h2 <= 40) {
             window.location.reload();
+            return;
+          }
+          if (h2 <= 50 && h2 > 40 && h <= 50) {
+            localStorage.clear();
+            // @ts-ignore
+            window.location.reload(true);
+            return;
           }
         }}
-        dragConstraints={{ top: 0, bottom: 0 }}
+        dragConstraints={{ top: 0, bottom: 0 }} */
       >
         <About serverState={serverState} />
-        <div className="gap"></div>
+        <motion.div className="gap"></motion.div>
         {serverState > 0 ? (
           <Works />
         ) : (
