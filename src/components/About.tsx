@@ -35,10 +35,12 @@ const FixedAbout = styled(motion.div)`
   .links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
   }
   .links a,
   .subtitle1 {
     opacity: var(--dim);
+    line-height: 1.8rem;
     @media (max-width: 500px) {
       font-size: 1.5rem;
     }
@@ -120,7 +122,6 @@ export function About({ serverState, extras }: AboutProps) {
   return (
     <>
       <FixedAbout onMouseMove={handleMouse}>
-        <Header />
         <motion.div style={style}>
           <motion.div
             animate={{ y: 0, opacity: 0.6 }}
@@ -162,7 +163,7 @@ export function About({ serverState, extras }: AboutProps) {
             className="links"
             transition={{ delay: 0.5 }}
             initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 0.6 }}
+            animate={{ y: 0, opacity: 0.999 }}
           >
             <a
               target="_blank"
@@ -192,6 +193,7 @@ export function About({ serverState, extras }: AboutProps) {
             >
               github
             </a>
+            <Header />
           </motion.div>
         </motion.div>
       </FixedAbout>
@@ -199,17 +201,10 @@ export function About({ serverState, extras }: AboutProps) {
   );
 }
 const StyledHeader = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 20px;
-
-  svg {
-    display: block;
-  }
+  /* justify-content: flex-end; */
+  /* width: 100%; */
+  /* padding: 20px; */
 `;
 
 const LightButton = styled(motion(Brightness2RoundedIcon))`
