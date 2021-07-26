@@ -6,7 +6,7 @@ import { About } from "./About";
 import { TextLoader } from "./TextLoader";
 import { TextGlitch } from "./TextGlitch";
 import { Works } from "./Works";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
 const StyledHome = styled(motion.div)`
   background: ${(p) => p.theme.colors.main.background};
