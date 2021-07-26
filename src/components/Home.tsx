@@ -51,15 +51,11 @@ export function Home() {
       .catch(() => setServerState(-1));
   }, []);
 
-  const x = useMotionValue(0);
+  // const x = useMotionValue(0);
 
   return (
     <>
-      <StyledHome
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        style={{ x }}
-      >
+      <StyledHome>
         <About serverState={serverState} />
         <motion.div className="gap"></motion.div>
         {serverState > 0 ? (
