@@ -132,9 +132,9 @@ export function About({ serverState, extras }: AboutProps) {
               target="_blank"
               className="subtitle1"
               rel="noreferrer"
-              href="https://instagram.com/xrehpicx"
+              href="https://olvi.vercel.app/contact"
             >
-              xrehpicx
+              contact now
             </a>
           </motion.div>
 

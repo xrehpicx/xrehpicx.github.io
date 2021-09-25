@@ -48,8 +48,8 @@ export default function useLookatme({
         ym.set(event.clientY - window.innerHeight / 2);
 
         const rect = event.currentTarget.getBoundingClientRect();
-        xr.set(event.clientX - rect.left);
-        yr.set(event.clientY - rect.top);
+        xr.set(rect.left - event.clientX);
+        yr.set(rect.top - event.clientY);
         return;
       }
       setReturnstyle(false);
