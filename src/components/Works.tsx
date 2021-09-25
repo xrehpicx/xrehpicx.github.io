@@ -62,7 +62,7 @@ export function Works() {
           animate={{ y: 0, opacity: 1 }}
         >
           <h4 className="works-title" onClick={() => containerRef.current?.scrollIntoView()}>
-            My Works
+            React projects and demos
           </h4>
           <div className="works">
             {works.map((p, i) => (
