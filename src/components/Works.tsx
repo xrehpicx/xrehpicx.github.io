@@ -5,6 +5,7 @@ import { TextLoader } from "./TextLoader";
 import { StyledWork } from "./Work";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+// import { change } from "khroma";
 
 const ScrollWorks = styled(motion.div)`
   background: ${(p) => p.theme.colors.main.accent};
@@ -61,7 +62,10 @@ export function Works() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <h4 className="works-title" onClick={() => containerRef.current?.scrollIntoView()}>
+          <h4
+            className="works-title"
+            onClick={() => containerRef.current?.scrollIntoView()}
+          >
             React projects and demos
           </h4>
           <div className="works">
