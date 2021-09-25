@@ -209,10 +209,12 @@ const StyledHeader = styled(motion.div)`
 
 const LightButton = styled(motion(Brightness2RoundedIcon))`
   cursor: pointer;
+  margin-top: 10px;
   user-select: none;
 `;
 const DarkButton = styled(motion(Brightness7RoundedIcon))`
   cursor: pointer;
+  margin-top: 10px;
   user-select: none;
 `;
 

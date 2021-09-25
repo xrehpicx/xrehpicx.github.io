@@ -6,7 +6,7 @@ import { About } from "./About";
 import { TextLoader } from "./TextLoader";
 import { TextGlitch } from "./TextGlitch";
 import { Works } from "./Works";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
 const StyledHome = styled(motion.div)`
   background: ${(p) => p.theme.colors.main.background};
@@ -31,6 +31,7 @@ const VersionText = styled(TextGlitch)`
     monospace;
 `;
 
+/*
 const SideMenu = styled(motion.div)`
   top: 0;
   left: 0;
@@ -39,7 +40,7 @@ const SideMenu = styled(motion.div)`
   width: 100px;
   height: ${(p) => p.theme.height}px;
   background: ${(p) => p.theme.colors.main.accent};
-`;
+`; */
 
 export function Home() {
   const [serverState, setServerState] = useState(0);
@@ -50,16 +51,11 @@ export function Home() {
       .catch(() => setServerState(-1));
   }, []);
 
-  const x = useMotionValue(0);
+  // const x = useMotionValue(0);
 
   return (
     <>
-      <SideMenu style={{ width: x }}></SideMenu>
-      <StyledHome
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        style={{ x }}
-      >
+      <StyledHome>
         <About serverState={serverState} />
         <motion.div className="gap"></motion.div>
         {serverState > 0 ? (
