@@ -5,7 +5,7 @@ export const defaultdarktheme: DefaultTheme = {
   colors: {
     main: {
       type: "dark",
-      accent: "#29ffa6",
+      accent: "#1cb6e4",
       background: "#000",
       text: "#ffffff",
     },

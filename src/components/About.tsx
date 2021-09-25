@@ -134,7 +134,7 @@ export function About({ serverState, extras }: AboutProps) {
               rel="noreferrer"
               href="https://olvi.vercel.app/contact"
             >
-              contact now
+              send a message
             </a>
           </motion.div>
 
