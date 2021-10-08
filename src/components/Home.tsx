@@ -5,7 +5,8 @@ import version from "../version.json";
 import { About } from "./About";
 import { TextLoader } from "./TextLoader";
 import { TextGlitch } from "./TextGlitch";
-import { Works } from "./Works";
+// import { Works } from "./Works";
+import { Status } from "./Status";
 import { motion } from "framer-motion";
 
 const StyledHome = styled(motion.div)`
@@ -59,7 +60,7 @@ export function Home() {
         <About serverState={serverState} />
         <motion.div className="gap"></motion.div>
         {serverState > 0 ? (
-          <Works />
+          <Status />
         ) : (
           <TextLoader
             failed={serverState < 0 ? "failed to get works" : ""}
