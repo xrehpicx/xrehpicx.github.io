@@ -327,7 +327,7 @@ function Footer() {
       </Typography>
       <Typography variant="body1" color="inherit">
         You can just send me a message{" "}
-        <Link to={{ pathname: "https://olvi.vercel.app/contact" }}>here</Link>{" "}
+        <MLink to={{ pathname: "https://olvi.vercel.app/contact" }}>here</MLink>{" "}
         or sit and decide one of the following for a faster reply
       </Typography>
       <div className="contact-chips">
