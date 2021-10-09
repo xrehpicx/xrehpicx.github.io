@@ -1,12 +1,20 @@
 import { useMotionValue, useTransform } from "framer-motion";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  
+  useState,
+} from "react";
 
 export default function useLookatme({
   angle = 10,
   divider = 30,
+  fixed,
 }: {
   angle?: number;
   divider?: number;
+  fixed?: boolean;
 }) {
   const [returnStyle, setReturnstyle] = useState(false);
 
@@ -23,7 +31,7 @@ export default function useLookatme({
     [-window.innerHeight, window.innerHeight],
     [-window.innerHeight / divider, window.innerHeight / divider]
   );
-  const xshadow = useTransform(
+  /* const xshadow = useTransform(
     xm,
     [-window.innerWidth, window.innerWidth],
     [-window.innerWidth / divider, window.innerWidth / divider]
@@ -32,29 +40,31 @@ export default function useLookatme({
     ym,
     [-window.innerHeight, window.innerHeight],
     [-window.innerHeight / divider, window.innerHeight / divider]
-  );
-
-  const xr = useMotionValue(200);
-  const yr = useMotionValue(200);
+  ); */
 
   const rotateX = useTransform(ym, [0, 400], [angle, -angle]);
   const rotateY = useTransform(xm, [0, 400], [-angle, angle]);
+
+  // const parentRef = useRef<DOMRect | null>(null);
 
   const handleMouse = useCallback(
     function (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
       if (window.innerWidth > 500) {
         setReturnstyle(true);
+        // if (!parentRef.current) {
+        //   parentRef.current = event.currentTarget.getBoundingClientRect();
+        // }
+        // const rect = parentRef.current;
         xm.set(event.clientX - window.innerWidth / 2);
         ym.set(event.clientY - window.innerHeight / 2);
 
-        const rect = event.currentTarget.getBoundingClientRect();
-        xr.set(rect.left - event.clientX);
-        yr.set(rect.top - event.clientY);
+        // xr.set(event.clientX - rect.left);
+        // yr.set(event.clientY - rect.top);
         return;
       }
       setReturnstyle(false);
     },
-    [xm, xr, ym, yr]
+    [xm, ym]
   );
 
   useEffect(() => {
@@ -70,11 +80,16 @@ export default function useLookatme({
   const looker = useMemo(
     () => ({
       style: returnStyle
-        ? { x, y, rotateX, rotateY, xshadow, yshadow }
+        ? {
+            x: fixed ? undefined : x,
+            y: fixed ? undefined : y,
+            rotateX,
+            rotateY,
+          }
         : undefined,
       handleMouse,
     }),
-    [x, y, rotateX, rotateY, handleMouse, returnStyle, xshadow, yshadow]
+    [returnStyle, fixed, x, y, rotateX, rotateY, handleMouse]
   );
 
   return looker;

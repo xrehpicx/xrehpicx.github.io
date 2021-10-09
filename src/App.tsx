@@ -1,27 +1,19 @@
-import React, { useContext } from "react";
-import { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./components/Home";
-import { GlobalContext, GlobalContextProvider } from "./contexts/GlobalContext";
-
-// const StyledApp = styled.div``;
+import { ContextRender } from "./Contexts/AllContexts";
 
 function App() {
-  const {
-    themer: { theme, Global },
-  } = useContext(GlobalContext);
   return (
-    <ThemeProvider theme={theme}>
-      <Global />
-      <Home />
-      {/* <StyledApp onClick={toggle} className="App"></StyledApp> */}
-    </ThemeProvider>
+    <ContextRender>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </ContextRender>
   );
 }
 
-export default function A() {
-  return (
-    <GlobalContextProvider>
-      <App />
-    </GlobalContextProvider>
-  );
-}
+export default App;

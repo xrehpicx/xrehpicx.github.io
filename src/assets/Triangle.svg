@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="35px" viewBox="0 0 44 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Triangle</title>
+    <g id="portfolio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-62.000000, -47.000000)" stroke="#00FFCA" stroke-width="4.5">
+            <g id="Group" transform="translate(67.000000, 45.000000)">
+                <polygon id="Triangle" transform="translate(17.000000, 18.500000) scale(1, -1) translate(-17.000000, -18.500000) " points="17 5 34 32 0 32"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
