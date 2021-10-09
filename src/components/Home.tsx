@@ -317,6 +317,7 @@ function Footer() {
         .contact-chips {
           margin-top: 10px;
           display: flex;
+          flex-wrap: wrap;
           gap: 1rem;
         }
       `}
@@ -356,18 +357,18 @@ function Footer() {
               <g transform="">
                 <g
                   fill="none"
-                  fill-rule="nonzero"
+                  fillRule="nonzero"
                   stroke="none"
-                  stroke-width="1"
-                  stroke-linecap="butt"
-                  stroke-linejoin="miter"
-                  stroke-miterlimit="10"
-                  stroke-dasharray=""
-                  stroke-dashoffset="0"
-                  font-family="none"
-                  font-weight="none"
-                  font-size="none"
-                  text-anchor="none"
+                  strokeWidth="1"
+                  strokeLinecap="butt"
+                  strokeLinejoin="miter"
+                  strokeMiterlimit="10"
+                  strokeDasharray=""
+                  strokeDashoffset="0"
+                  fontFamily="none"
+                  fontWeight="none"
+                  fontSize="none"
+                  textAnchor="none"
                   css={css`
                     mix-blend-mode: normal;
                   `}
