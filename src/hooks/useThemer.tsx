@@ -7,7 +7,7 @@ import {
   defaultlightpallete,
   defaultTheme,
 } from "../theme";
-import { createTheme, ThemeOptions } from "@mui/material";
+import { ThemeOptions } from "@mui/material";
 
 type actionprops = {
   type: "updatehw" | "darkmode" | "toggle" | "lightmode";
