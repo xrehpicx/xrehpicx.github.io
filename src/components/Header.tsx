@@ -21,10 +21,28 @@ export function Header() {
           height: 100%;
         `}
       >
-        <Typography fontSize={"4rem"} variant="h1">
+        <Typography
+          css={css`
+            font-size: 4rem;
+            @media (max-width: 600px) {
+              font-size: 2.5rem;
+            }
+          `}
+          variant="h1"
+        >
           Raj Sharma
         </Typography>
-        <Typography variant="h4">Designer & Developer</Typography>
+        <Typography
+          css={css`
+            font-size: 1.5rem;
+            @media (max-width: 600px) {
+              font-size: 1rem;
+            }
+          `}
+          variant="h4"
+        >
+          Designer & Developer
+        </Typography>
       </main>
     </div>
   );
