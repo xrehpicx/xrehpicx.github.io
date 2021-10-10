@@ -327,7 +327,12 @@ function Footer() {
       </Typography>
       <Typography variant="body1" color="inherit">
         You can just send me a message{" "}
-        <MLink to={{ pathname: "https://olvi.vercel.app/contact" }}>here</MLink>{" "}
+        <Link
+          target="_blank"
+          to={{ pathname: "https://olvi.vercel.app/contact" }}
+        >
+          here
+        </Link>{" "}
         or sit and decide one of the following for a faster reply
       </Typography>
       <div className="contact-chips">
@@ -403,6 +408,7 @@ function Chip({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      whileTap={{ boxShadow: `-2px 2px 0 1px ${theme.palette.primary.main}` }}
       whileHover={{ boxShadow: `-2px 2px 0 1px ${theme.palette.primary.main}` }}
       css={css`
         display: flex;
