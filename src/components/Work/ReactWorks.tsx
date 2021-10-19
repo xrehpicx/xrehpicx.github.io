@@ -13,6 +13,10 @@ export default function ReactWork() {
     <div
       css={css`
         padding: 1.2rem 1.6rem;
+        margin: 0 auto;
+        margin-top: 1.6rem;
+        max-width: 1200px;
+        width: 100%;
       `}
     >
       <Typography variant="h1">React stuff</Typography>

@@ -80,7 +80,7 @@ function Sections() {
       `}
     >
       <Status />
-      <div className="buttons">
+      <div className="buttons" id="work">
         <div className="row">
           <SectionButton
             Icon={<ReactLogo />}

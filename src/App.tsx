@@ -15,6 +15,9 @@ function App() {
           <Route path="/work/:work">
             <Work />
           </Route>
+          <Route path="/work">
+            <Work />
+          </Route>
           <Route path="*">
             <NotFound />
           </Route>
