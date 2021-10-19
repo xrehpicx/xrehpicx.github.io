@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { DebugIndicator } from "./components/DebugIndicator";
 import { Home } from "./components/Home";
 import NotFound from "./components/NotFound";
 import Work from "./components/Work";
@@ -22,6 +23,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+        <DebugIndicator />
       </Router>
     </ContextRender>
   );

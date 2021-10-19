@@ -1,24 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
 import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
 import { ReactComponent as InstaLogo } from "../assets/HeaderIcons/insta.svg";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 /* import { ReactComponent as FigmaLogo } from "../assets/HeaderIcons/figma.svg";
 import { ReactComponent as GolangLogo } from "../assets/HeaderIcons/golang.svg";
 import { ReactComponent as NodejsLogo } from "../assets/HeaderIcons/nodejs.svg";
 import { ReactComponent as JsLogo } from "../assets/HeaderIcons/js.svg";
 import { ReactComponent as TsLogo } from "../assets/HeaderIcons/ts.svg"; */
-import { Button, IconButton, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import { Nav } from "./Nav";
-import { useContext } from "react";
-import { DebugContext } from "../Contexts/CoolDebugStuff";
 import { Status } from "./Status";
 
 export function Home() {
@@ -37,7 +34,6 @@ export function Home() {
       <Header />
       <Sections />
       <Footer />
-      <DebugIndicator />
     </div>
   );
 }
@@ -293,50 +289,5 @@ function Chip({
       {icon}
       <span>{label}</span>
     </motion.a>
-  );
-}
-
-function DebugIndicator() {
-  const theme = useTheme();
-  const { debug, setDebug } = useContext(DebugContext);
-
-  return (
-    <AnimatePresence>
-      {debug && (
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: "auto" }}
-          exit={{ height: 0, opacity: 0 }}
-          css={css`
-            position: sticky;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 0.5rem 1.6rem;
-            padding-right: 0.4rem;
-            background: ${theme.palette.secondary.main};
-            color: ${theme.palette.primary.contrastText};
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          `}
-        >
-          <p>Debug mode enabled</p>
-          <div>
-            <Button
-              variant="outlined"
-              onClick={() => setDebug(false)}
-              color="inherit"
-            >
-              disable
-            </Button>
-            <IconButton color="inherit">
-              <MoreVertOutlinedIcon />
-            </IconButton>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
   );
 }
