@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { IWorkFields } from "../../../@types/generated/contentful";
 import { ContentfullContext } from "../../Contexts/Contentfull";
+import { ReactComponent as ReactLogo } from "../../assets/HeaderIcons/react.svg";
 
 export default function ReactWork() {
   const { works } = useContext(ContentfullContext);
@@ -17,9 +18,22 @@ export default function ReactWork() {
         margin-top: 1.6rem;
         max-width: 1200px;
         width: 100%;
+        .title {
+          display: flex;
+          align-items: center;
+          svg {
+            width: 2.6rem;
+            height: 2.6rem;
+          }
+        }
       `}
     >
-      <Typography variant="h1">React stuff</Typography>
+      <div className="title">
+        <ReactLogo />
+        <Typography ml="1rem" variant="h3">
+          React
+        </Typography>
+      </div>
       <div
         css={css`
           margin-top: 1.6rem;
