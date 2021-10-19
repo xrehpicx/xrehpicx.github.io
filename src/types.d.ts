@@ -3,7 +3,10 @@ import React from "react";
 import { Theme, GlobalStyleComponent } from "@emotion/react";
 export interface DefaultContextProps {
   themer: IThemer;
+}
+export interface DebugContextProps {
   debug: boolean;
+  setDebug: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IThemer {

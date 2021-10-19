@@ -68,7 +68,6 @@ export const GlobalStyle = () => {
 
 export const defaultTheme = createTheme({
   palette: defaultdarkpallete,
-
   typography: {
     fontFamily: "Product Sans",
   },

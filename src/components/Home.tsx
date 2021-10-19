@@ -1,22 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Triangle from "../assets/Triangle.svg";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
 import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
 import { ReactComponent as InstaLogo } from "../assets/HeaderIcons/insta.svg";
+import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 /* import { ReactComponent as FigmaLogo } from "../assets/HeaderIcons/figma.svg";
 import { ReactComponent as GolangLogo } from "../assets/HeaderIcons/golang.svg";
 import { ReactComponent as NodejsLogo } from "../assets/HeaderIcons/nodejs.svg";
 import { ReactComponent as JsLogo } from "../assets/HeaderIcons/js.svg";
 import { ReactComponent as TsLogo } from "../assets/HeaderIcons/ts.svg"; */
-import { useTheme } from "@mui/material";
+import { Button, IconButton, useTheme } from "@mui/material";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
+import { Nav } from "./Nav";
+import { useContext } from "react";
+import { DebugContext } from "../Contexts/CoolDebugStuff";
 
 export function Home() {
   return (
@@ -34,129 +36,8 @@ export function Home() {
       <Header />
       <Sections />
       <Footer />
+      <DebugIndicator />
     </div>
-  );
-}
-
-function Nav() {
-  const theme = useTheme();
-  return (
-    <>
-      <nav
-        css={css`
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1.2rem 1.6rem;
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          @media (max-width: 600px) {
-            display: none;
-          }
-          .left {
-            display: flex;
-            align-items: center;
-
-            img {
-              width: 32px;
-              height: 32px;
-              object-fit: contain;
-            }
-          }
-        `}
-      >
-        <div className="left">
-          <img src={Triangle} alt="logo" />
-          <Typography ml={1} variant="h4">
-            xrehpicx
-          </Typography>
-        </div>
-        <ul className="right">
-          {/* <Button
-            css={css`
-              margin-left: 1rem;
-            `}
-            color="inherit"
-          >
-            Home
-          </Button>
-          <Button
-            css={css`
-              margin-left: 1rem;
-            `}
-            color="inherit"
-          >
-            About
-          </Button>
-          <Button
-            css={css`
-              margin-left: 1rem;
-            `}
-            color="inherit"
-          >
-            Contact
-          </Button>
-          <Button
-            css={css`
-              margin-left: 1rem;
-            `}
-            color="inherit"
-          >
-            Work
-          </Button> */}
-          <Button
-            css={css`
-              margin-left: 1rem;
-            `}
-          >
-            log in
-          </Button>
-        </ul>
-      </nav>
-      <motion.nav
-        initial={{
-          opacity: 0,
-          boxShadow: `0 0 0 0 #0000`,
-        }}
-        animate={{
-          opacity: 1,
-          boxShadow: `0 0 50px 1px ${theme.palette.primary.main}`,
-        }}
-        css={css`
-          display: none;
-          @media (max-width: 600px) {
-            display: flex;
-          }
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          justify-content: center;
-          align-items: center;
-          padding: 1.2rem 1.6rem;
-          background: ${theme.palette.background.paper};
-
-          .logo {
-            display: flex;
-            align-items: center;
-
-            img {
-              width: 32px;
-              height: 32px;
-              object-fit: contain;
-            }
-          }
-        `}
-      >
-        <div className="logo">
-          <img src={Triangle} alt="logo" />
-          <Typography ml={1} variant="h4">
-            xrehpicx
-          </Typography>
-        </div>
-      </motion.nav>
-    </>
   );
 }
 
@@ -429,5 +310,50 @@ function Chip({
       {icon}
       <span>{label}</span>
     </motion.a>
+  );
+}
+
+function DebugIndicator() {
+  const theme = useTheme();
+  const { debug, setDebug } = useContext(DebugContext);
+
+  return (
+    <AnimatePresence>
+      {debug && (
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: "auto" }}
+          exit={{ height: 0, opacity: 0 }}
+          css={css`
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.5rem 1.6rem;
+            padding-right: 0.4rem;
+            background: ${theme.palette.secondary.main};
+            color: ${theme.palette.primary.contrastText};
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          `}
+        >
+          <p>Debug mode enabled</p>
+          <div>
+            <Button
+              variant="outlined"
+              onClick={() => setDebug(false)}
+              color="inherit"
+            >
+              disable
+            </Button>
+            <IconButton color="inherit">
+              <MoreVertOutlinedIcon />
+            </IconButton>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

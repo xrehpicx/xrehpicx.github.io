@@ -1,8 +1,8 @@
 import "@emotion/react";
-import { ThemeOptions } from "@mui/material";
+import { Theme as MuiTheme } from "@mui/material";
 
 declare module "@emotion/react" {
-  export type Theme = ThemeOptions;
+  export type Theme = MuiTheme;
 }
 
 declare global {

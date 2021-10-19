@@ -11,32 +11,10 @@ export const DefaultContext = createContext<DefaultContextProps>(
 
 export const DefaultContextProvider: FC = ({ children }) => {
   // custom hookss
-
   const themer = useThemer();
 
-  // useWantCode(themer.theme);
-  // useLoaderCleanup();
-  /* useEffect(() => {
-    themer.dispatch({ type: "lightmode" });
-  }, [themer]); */
-  const [debug, setDebug] = useState(false);
-  useEffect(() => {
-    const onkey = (e: KeyboardEvent) => {
-      console.log(e);
-      if ((e.shiftKey && e.key === "D") || (e.shiftKey && e.key === "d")) {
-        setDebug((s) => !s);
-        themer.toggle();
-      }
-    };
-    window.addEventListener("keypress", onkey);
-
-    return () => {
-      return window.removeEventListener("keypress", onkey);
-    };
-  }, [themer]);
-
   return (
-    <DefaultContext.Provider value={{ themer, debug }}>
+    <DefaultContext.Provider value={{ themer }}>
       {themer.theme && (
         <ThemeProvider theme={themer.theme}>
           <MuiThemeProvider theme={themer.theme}>{children}</MuiThemeProvider>

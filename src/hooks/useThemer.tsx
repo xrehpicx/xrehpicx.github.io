@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
-import { Theme } from "@emotion/react";
+import { Theme as ETheme } from "@emotion/react";
 import { IThemer } from "../types";
 import {
   GlobalStyle,
@@ -7,14 +7,14 @@ import {
   defaultlightpallete,
   defaultTheme,
 } from "../theme";
-import { ThemeOptions } from "@mui/material";
+import { ThemeOptions } from "@mui/material/styles";
 
 type actionprops = {
-  type: "updatehw" | "darkmode" | "toggle" | "lightmode";
+  type: "updatehw" | "darkmode" | "toggle" | "lightmode" | "global-warn";
   payload?: any;
 };
 
-function reducer(state: ThemeOptions, action: actionprops): Theme {
+function reducer(state: ThemeOptions, action: actionprops): ETheme {
   switch (action.type) {
     case "darkmode":
       return {
@@ -40,6 +40,16 @@ function reducer(state: ThemeOptions, action: actionprops): Theme {
             ...state,
             palette: defaultdarkpallete,
           };
+    /* case "global-warn":
+      if (!state.palette?.primary?.main) {
+        return state;
+      }
+      localStorage.setItem("accent", state.palette.primary.main);
+      return {
+        ...state,
+        palette: { ...state.palette },
+      };
+ */
     default:
       return {
         ...state,
