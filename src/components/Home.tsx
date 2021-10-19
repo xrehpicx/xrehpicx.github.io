@@ -19,6 +19,7 @@ import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import { Nav } from "./Nav";
 import { useContext } from "react";
 import { DebugContext } from "../Contexts/CoolDebugStuff";
+import { Status } from "./Status";
 
 export function Home() {
   return (
@@ -37,24 +38,6 @@ export function Home() {
       <Sections />
       <Footer />
       <DebugIndicator />
-    </div>
-  );
-}
-
-function Status() {
-  const theme = useTheme();
-  return (
-    <div css={{ marginBottom: "1rem" }} className="status">
-      <div className="status-icon">
-        <p css={{ fontSize: "1.5rem", color: theme.palette.primary.main }}>
-          Playing Valorant
-        </p>
-        <img
-          src="https://img.icons8.com/plasticine/100/000000/valorant.png"
-          alt=""
-        />
-      </div>
-      <p css={{ fontSize: "1rem" }}>Current status</p>
     </div>
   );
 }
@@ -102,12 +85,12 @@ function Sections() {
           <SectionButton
             Icon={<ReactLogo />}
             label="React Work"
-            to="/react-work"
+            to="/work/react"
           />
           <SectionButton
             Icon={<SketchLogo />}
             label="Poster Designs"
-            to="/poster-work"
+            to="/work/posters"
           />
         </div>
         <div className="row">
@@ -128,7 +111,7 @@ function Sections() {
               </svg>
             }
             label="Medium Articles"
-            to="/medium"
+            to="/work/medium"
           />
           <SectionButton
             Icon={<GithubLogo />}

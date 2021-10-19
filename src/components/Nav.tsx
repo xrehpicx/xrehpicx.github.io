@@ -6,11 +6,13 @@ import Triangle from "../assets/Triangle.svg";
 import { motion } from "framer-motion";
 import { useTheme } from "@mui/material";
 import { DebugContext } from "../Contexts/CoolDebugStuff";
+import { ContentfullContext } from "../Contexts/Contentfull";
 import { useContext } from "react";
 
 export function Nav() {
   const theme = useTheme();
   const { debug, setDebug } = useContext(DebugContext);
+  const { about } = useContext(ContentfullContext);
   return (
     <>
       <nav
@@ -38,9 +40,9 @@ export function Nav() {
         `}
       >
         <div className="left">
-          <img src={Triangle} alt="logo" />
+          <img src={about.logo || Triangle} alt="logo" />
           <Typography ml={1} variant="h4">
-            xrehpicx
+            {about.brand}
           </Typography>
         </div>
         <ul className="right">
