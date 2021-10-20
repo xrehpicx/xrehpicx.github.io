@@ -86,7 +86,7 @@ function Sections() {
           <SectionButton
             Icon={<SketchLogo />}
             label="Poster Designs"
-            to="/work/posters"
+            to="/work/poster"
           />
         </div>
         <div className="row">
@@ -160,7 +160,9 @@ function SectionButton({
       whileHover={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
     >
       {Icon}
-      <span style={{ marginLeft: "1rem" }}>{label}</span>
+      <motion.span layoutId={to} style={{ marginLeft: "1rem" }}>
+        {label}
+      </motion.span>
     </MLink>
   );
 }

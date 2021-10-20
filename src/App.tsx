@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AnimateSharedLayout } from "framer-motion";
 import { DebugIndicator } from "./components/DebugIndicator";
 import { Home } from "./components/Home";
 import NotFound from "./components/NotFound";
@@ -9,20 +10,22 @@ function App() {
   return (
     <ContextRender>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/work/:work">
-            <Work />
-          </Route>
-          <Route path="/work">
-            <Work />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+        <AnimateSharedLayout>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/work/:work">
+              <Work />
+            </Route>
+            <Route path="/work">
+              <Work />
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </AnimateSharedLayout>
         <DebugIndicator />
       </Router>
     </ContextRender>

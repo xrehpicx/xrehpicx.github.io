@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
-import ReactWork from "./ReactWorks";
-import NotFound from "../NotFound";
+import ReactWork from "./ReactWork";
+import MediumWork from "./MediumWork";
+import PosterWork from "./PosterWork";
+
 import { useHistory } from "react-router-dom";
 
 export default function Work() {
@@ -10,6 +12,10 @@ export default function Work() {
   switch (params.work) {
     case "react":
       return <ReactWork />;
+    case "medium":
+      return <MediumWork />;
+    case "poster":
+      return <PosterWork />;
     default:
       history.push("/#work");
       return <></>;
