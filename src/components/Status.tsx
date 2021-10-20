@@ -12,7 +12,7 @@ export function Status() {
     <div css={{ marginBottom: "1rem" }} className="status">
       <div className="status-icon">
         <TextGlitch
-          interval={50}
+          cycletime={2000}
           css={{ fontSize: "1.5rem", color: theme.palette.primary.main }}
           text={status.statusText}
         />
