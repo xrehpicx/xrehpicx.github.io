@@ -61,11 +61,9 @@ function reducer(state: ThemeOptions, action: actionprops): ETheme {
 export function useThemer() {
   const [theme, dispatch] = useReducer(reducer, defaultTheme);
 
-  /* useEffect(() => {
-    const update = () => dispatch({ type: "updatehw" });
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []); */
+  useEffect(() => {
+    // dispatch({ type: "lightmode" });
+  }, []);
 
   const toggle = useCallback(() => {
     dispatch({ type: "toggle" });

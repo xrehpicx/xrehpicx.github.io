@@ -65,7 +65,7 @@ export default function MediumWork() {
         gridRef={(r) => (grid.current = r)}
         columnWidth={
           windowWidth > 1440
-            ? "25%"
+            ? "26%"
             : windowWidth > 1200
             ? "33.33%"
             : windowWidth > 1024

@@ -108,7 +108,13 @@ export function Nav() {
         <div className="logo">
           <img src={Triangle} alt="logo" />
           <Typography ml={1} variant="h4">
-            xrehpicx
+            <TextGlitch
+              css={css`
+                margin-bottom: 8px;
+              `}
+              text={about.brand}
+              cycletime={2000}
+            />
           </Typography>
         </div>
       </motion.nav>

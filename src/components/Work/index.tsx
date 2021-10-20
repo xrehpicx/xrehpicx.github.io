@@ -4,6 +4,7 @@ import MediumWork from "./MediumWork";
 import PosterWork from "./PosterWork";
 
 import { useHistory } from "react-router-dom";
+import { Footer } from "../Footer";
 
 export default function Work() {
   const params = useParams<{ work: string }>();
@@ -11,11 +12,26 @@ export default function Work() {
   const history = useHistory();
   switch (params.work) {
     case "react":
-      return <ReactWork />;
+      return (
+        <>
+          <ReactWork />
+          <Footer />
+        </>
+      );
     case "medium":
-      return <MediumWork />;
+      return (
+        <>
+          <MediumWork />
+          <Footer />
+        </>
+      );
     case "poster":
-      return <PosterWork />;
+      return (
+        <>
+          <PosterWork />
+          <Footer />
+        </>
+      );
     default:
       history.push("/#work");
       return <></>;
