@@ -30,6 +30,7 @@
     "get-apex-domain-name": "^0.2.0",
     "hex-to-css-filter": "^5.2.0",
     "parse-domain": "^4.1.0",
+    "use-dencrypt-effect": "latest",
     "psl": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

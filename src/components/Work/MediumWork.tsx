@@ -84,19 +84,6 @@ export default function MediumWork() {
           .map((work) => <WorkCard key={work.title} work={work} />)
           .reverse()}
       </StackGrid>
-      {/* <div
-        css={css`
-          margin-top: 1.6rem;
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          grid-gap: 1.6rem;
-        `}
-      >
-        {works
-          .filter((work) => work.type === "medium")
-          .map((work) => <WorkCard key={work.title} work={work} />)
-          .reverse()}
-      </div> */}
     </div>
   );
 }
@@ -114,7 +101,6 @@ function WorkCard({ work }: { work: IWorkFields }) {
     <motion.div
       css={css`
         display: flex;
-
         flex-direction: column;
         border: 1px solid ${theme.palette.primary.main};
         width: 100%;
@@ -150,6 +136,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
           .link {
             display: flex;
             align-items: center;
+
             img {
               width: 1rem;
               height: 1rem;
@@ -166,7 +153,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
               alt=""
             />
             <a href={link} target={"_blank"} rel="noreferrer">
-              {link.split("//")[1]}
+              open
             </a>
           </div>
         ))}

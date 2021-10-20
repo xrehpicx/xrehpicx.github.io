@@ -8,6 +8,7 @@ import { useTheme } from "@mui/material";
 import { DebugContext } from "../Contexts/CoolDebugStuff";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { useContext } from "react";
+import { TextGlitch } from "./TextGlitch";
 
 export function Nav() {
   const theme = useTheme();
@@ -42,7 +43,13 @@ export function Nav() {
         <div className="left">
           <img src={about.logo || Triangle} alt="logo" />
           <Typography ml={1} variant="h4">
-            {about.brand}
+            <TextGlitch
+              css={css`
+                margin-bottom: 10px;
+              `}
+              text={about.brand}
+              cycletime={2000}
+            />
           </Typography>
         </div>
         <ul className="right">
@@ -55,7 +62,14 @@ export function Nav() {
             }}
             color="secondary"
           >
-            {debug ? "disable debug" : "Break"}
+            <TextGlitch
+              css={css`
+                margin-bottom: 10px;
+              `}
+              text={debug ? "disable debug" : "Break"}
+              interval={20}
+              cycletime={2000}
+            />
           </Button>
         </ul>
       </nav>

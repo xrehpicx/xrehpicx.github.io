@@ -1,9 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
+import { useContext } from "react";
+import { ContentfullContext } from "../Contexts/Contentfull";
 import { Background } from "./Background";
+import { TextGlitch } from "./TextGlitch";
 
 export function Header() {
+  const { about } = useContext(ContentfullContext);
   return (
     <div
       css={css`
@@ -30,7 +34,7 @@ export function Header() {
           `}
           variant="h1"
         >
-          Raj Sharma
+          {about.name}
         </Typography>
         <Typography
           css={css`
@@ -41,7 +45,13 @@ export function Header() {
           `}
           variant="h4"
         >
-          Designer & Developer
+          <TextGlitch
+            css={css`
+              margin-bottom: 10px;
+            `}
+            text={about.role}
+            cycletime={2000}
+          />
         </Typography>
       </main>
     </div>
