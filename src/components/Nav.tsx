@@ -63,9 +63,6 @@ export function Nav() {
             color="secondary"
           >
             <TextGlitch
-              css={css`
-                margin-bottom: 10px;
-              `}
               text={debug ? "disable debug" : "Break"}
               interval={20}
               cycletime={2000}
