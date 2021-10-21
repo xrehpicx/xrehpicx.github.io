@@ -3,15 +3,15 @@ import { css } from "@emotion/react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Triangle from "../assets/Triangle.svg";
-import { motion } from "framer-motion";
-import { useTheme } from "@mui/material";
+/* import { motion } from "framer-motion";
+import { useTheme } from "@mui/material"; */
 import { DebugContext } from "../Contexts/CoolDebugStuff";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { useContext } from "react";
 import { TextGlitch } from "./TextGlitch";
 
 export function Nav() {
-  const theme = useTheme();
+  // const theme = useTheme();
   const { debug, setDebug } = useContext(DebugContext);
   const { about } = useContext(ContentfullContext);
   return (
@@ -70,7 +70,7 @@ export function Nav() {
           </Button>
         </ul>
       </nav>
-      <motion.nav
+      {/* <motion.nav
         initial={{
           opacity: 0,
           boxShadow: `0 0 0 0 #0000`,
@@ -117,7 +117,7 @@ export function Nav() {
             />
           </Typography>
         </div>
-      </motion.nav>
+      </motion.nav> */}
     </>
   );
 }

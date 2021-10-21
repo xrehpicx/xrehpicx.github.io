@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { motion } from "framer-motion";
+// import { ReactComponent as Triangle } from "../assets/Triangle.svg";
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
 import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
@@ -16,9 +17,11 @@ import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { About } from "./About";
+import { ScrollHelper } from "./ScrollHelper";
 
 const MReactLogo = motion(ReactLogo);
 const MSketchLogo = motion(SketchLogo);
+
 
 export function Home() {
   return (
@@ -50,6 +53,9 @@ function Sections() {
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
         .buttons {
           & > div {
             display: flex;
@@ -112,6 +118,7 @@ function Sections() {
       >
         <Chip link="/pricing" label="Pricing" />
       </div>
+      <ScrollHelper />
     </div>
   );
 }

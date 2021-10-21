@@ -62,7 +62,7 @@ export function Footer() {
             Raj Sharma
           </Typography>
           <Typography mt="0.5rem" variant="body1" color="inherit">
-            Student at <br /> Atria Institute of Technology
+            Student at <br /> Atria Institute of Technology <br /> (for now)
           </Typography>
         </section>
         <ContactChips />

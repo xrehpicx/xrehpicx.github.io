@@ -9,6 +9,7 @@ import { ReactComponent as SketchLogo } from "../../assets/HeaderIcons/sketch.sv
 import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
+import { ScrollHelper } from "../ScrollHelper";
 
 const MTypography = motion(Typography);
 const MSketchLogo = motion(SketchLogo);
@@ -33,11 +34,14 @@ export default function MediumWork() {
   return (
     <div
       css={css`
+        position: relative;
         padding: 1.2rem 1.6rem;
         margin: 0 auto;
         margin-top: 1.6rem;
         max-width: 1200px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
         .title {
           display: flex;
           align-items: center;
@@ -49,6 +53,7 @@ export default function MediumWork() {
         }
       `}
     >
+      <ScrollHelper />
       <div className="title">
         <MSketchLogo layoutId="sketch-icon" />
 

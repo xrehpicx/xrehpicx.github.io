@@ -167,6 +167,14 @@ export default function Pricing() {
             </div>
             <div className="price">
               <Typography variant="h6" color="primary">
+                Instagram post
+              </Typography>
+              <Typography variant="body1" fontSize={"1.5rem"}>
+                1000rs/hr
+              </Typography>
+            </div>
+            <div className="price">
+              <Typography variant="h6" color="primary">
                 Event
               </Typography>
               <Typography variant="body1" fontSize={"1.5rem"}>
@@ -190,7 +198,7 @@ export default function Pricing() {
   );
 }
 
-function WorkCard({ work }: { work: IWorkFields }) {
+/* function WorkCard({ work }: { work: IWorkFields }) {
   const theme = useTheme();
 
   useEffect(() => {
@@ -263,4 +271,4 @@ function WorkCard({ work }: { work: IWorkFields }) {
       </div>
     </motion.div>
   );
-}
+} */

@@ -15,7 +15,7 @@ export function About() {
         padding: 1.2rem 1.6rem;
         padding-bottom: 0;
         @media (max-width: 600px) {
-          padding-top: 6rem;
+          padding-top: 7rem;
         }
         max-width: 1200px;
         margin: 0 auto;
