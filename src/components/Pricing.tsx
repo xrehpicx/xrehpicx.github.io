@@ -18,7 +18,7 @@ const MTypography = motion(Typography);
 
 export default function Pricing() {
   //   const { works } = useContext(ContentfullContext);
-
+  const theme = useTheme();
   const history = useHistory();
 
   const ANIMATION_DURATION = 400;
@@ -47,6 +47,19 @@ export default function Pricing() {
           svg {
             width: 2.6rem;
             height: 2.6rem;
+          }
+        }
+        .price-section {
+          display: flex;
+          padding: 1.2rem 2rem;
+          flex-direction: column;
+          border: 1px solid ${theme.palette.primary.main};
+          width: 100%;
+          .price {
+            margin-left: 0.5rem;
+            .price {
+              margin-left: 1rem;
+            }
           }
         }
       `}
@@ -78,9 +91,9 @@ export default function Pricing() {
           windowWidth > 1440
             ? "25%"
             : windowWidth > 1200
-            ? "33.33%"
+            ? "30%"
             : windowWidth > 1024
-            ? "50%"
+            ? "40%"
             : "100%"
         }
         duration={ANIMATION_DURATION}
@@ -90,7 +103,85 @@ export default function Pricing() {
         monitorImagesLoaded
 
         // horizontal
-      ></StackGrid>
+      >
+        <motion.div
+          className="price-section"
+          whileHover={{
+            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+          }}
+          whileTap={{
+            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+          }}
+        >
+          <Typography variant="h4">Software</Typography>
+          <div className="price">
+            <Typography variant="h6" color="primary">
+              Web dev
+            </Typography>
+            <div className="price">
+              <Typography variant="h6" color="primary">
+                fontend
+              </Typography>
+              <Typography variant="body1" fontSize={"1.5rem"}>
+                2200rs/hr
+              </Typography>
+            </div>
+            <div className="price">
+              <Typography variant="h6" color="primary">
+                backend
+              </Typography>
+              <Typography variant="body1" fontSize={"1.5rem"}>
+                2000rs/hr
+              </Typography>
+            </div>
+          </div>
+          <div className="price">
+            <Typography variant="h6" color="primary">
+              App dev
+            </Typography>
+            <Typography variant="body1" fontSize={"1.5rem"}>
+              3000rs/hr
+            </Typography>
+          </div>
+        </motion.div>
+        <motion.div
+          className="price-section"
+          whileHover={{
+            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+          }}
+          whileTap={{
+            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+          }}
+        >
+          <Typography variant="h4">Design</Typography>
+
+          <div className="price">
+            <Typography variant="h6" color="primary">
+              Web dev
+            </Typography>
+            <Typography variant="body1" fontSize={"1.5rem"}>
+              1000rs/hr
+            </Typography>
+          </div>
+          <div className="price">
+            <Typography variant="h6" color="primary">
+              Event
+            </Typography>
+            <Typography variant="body1" fontSize={"1.5rem"}>
+              200rs/hr
+            </Typography>
+          </div>
+
+          <div className="price">
+            <Typography variant="h6" color="primary">
+              Certificates and other Banners
+            </Typography>
+            <Typography variant="body1" fontSize={"1.5rem"}>
+              500rs/hr
+            </Typography>
+          </div>
+        </motion.div>
+      </StackGrid>
     </div>
   );
 }
