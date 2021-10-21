@@ -3,16 +3,21 @@ import { css } from "@emotion/react";
 import { Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useRef } from "react";
-import { IWorkFields } from "../../../@types/generated/contentful";
-import { ContentfullContext } from "../../Contexts/Contentfull";
+import { IWorkFields } from "../../@types/generated/contentful";
+import { ContentfullContext } from "../Contexts/Contentfull";
+import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
+import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
+import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
-import { useHistory } from "react-router";
+
+const MReactLogo = motion(ReactLogo);
+const MSketchLogo = motion(SketchLogo);
 
 const MTypography = motion(Typography);
 
-export default function MediumWork() {
-  const { works } = useContext(ContentfullContext);
+export default function Pricing() {
+  //   const { works } = useContext(ContentfullContext);
 
   const history = useHistory();
 
@@ -47,16 +52,23 @@ export default function MediumWork() {
       `}
     >
       <div className="title">
-        <MediumLogo />
+        <MReactLogo layoutId="react-icon" />
+        <MSketchLogo
+          layoutId="sketch-icon"
+          css={css`
+            margin-left: 1rem;
+          `}
+        />
 
         <MTypography
           layoutId={history.location.pathname}
           ml="1rem"
           variant="h3"
         >
-          Medium
+          Pricing
         </MTypography>
       </div>
+
       <StackGrid
         css={css`
           margin-top: 1.6rem;
@@ -78,12 +90,7 @@ export default function MediumWork() {
         monitorImagesLoaded
 
         // horizontal
-      >
-        {works
-          .filter((work) => work.type === "medium")
-          .map((work) => <WorkCard key={work.title} work={work} />)
-          .reverse()}
-      </StackGrid>
+      ></StackGrid>
     </div>
   );
 }
@@ -101,6 +108,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
     <motion.div
       css={css`
         display: flex;
+
         flex-direction: column;
         border: 1px solid ${theme.palette.primary.main};
         width: 100%;
@@ -129,6 +137,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
         </Typography>
         <Typography variant="h6">{work.body}</Typography>
       </div>
+
       <div
         css={css`
           padding: 1.2rem 2rem;
@@ -136,7 +145,6 @@ function WorkCard({ work }: { work: IWorkFields }) {
           .link {
             display: flex;
             align-items: center;
-
             img {
               width: 1rem;
               height: 1rem;
@@ -153,31 +161,11 @@ function WorkCard({ work }: { work: IWorkFields }) {
               alt=""
             />
             <a href={link} target={"_blank"} rel="noreferrer">
-              open
+              {link.split("//")[1]}
             </a>
           </div>
         ))}
       </div>
     </motion.div>
-  );
-}
-
-function MediumLogo() {
-  const theme = useTheme();
-  return (
-    <motion.svg
-      layoutId="medium-icon"
-      xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
-      width="48"
-      height="48"
-      viewBox="0 0 48 48"
-      css={{ fill: theme.palette.primary.main }}
-    >
-      <circle cx="14" cy="24" r="12"></circle>
-      <ellipse cx="34" cy="24" rx="6" ry="11"></ellipse>
-      <ellipse cx="44" cy="24" rx="2" ry="10"></ellipse>
-    </motion.svg>
   );
 }

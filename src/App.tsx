@@ -4,6 +4,7 @@ import { DebugIndicator } from "./components/DebugIndicator";
 import { Home } from "./components/Home";
 import NotFound from "./components/NotFound";
 import Work from "./components/Work";
+import Pricing from "./components/Pricing";
 import { ContextRender } from "./Contexts/AllContexts";
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/pricing">
+              <Pricing />
             </Route>
             <Route path="/work/:work">
               <Work />

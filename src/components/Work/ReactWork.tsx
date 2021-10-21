@@ -11,6 +11,7 @@ import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 
 const MTypography = motion(Typography);
+const MReactLogo = motion(ReactLogo);
 
 export default function ReactWork() {
   const { works } = useContext(ContentfullContext);
@@ -48,8 +49,7 @@ export default function ReactWork() {
       `}
     >
       <div className="title">
-        <ReactLogo />
-
+        <MReactLogo layoutId="react-icon" />
         <MTypography
           layoutId={history.location.pathname}
           ml="1rem"
@@ -58,6 +58,7 @@ export default function ReactWork() {
           React
         </MTypography>
       </div>
+
       <StackGrid
         css={css`
           margin-top: 1.6rem;

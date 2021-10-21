@@ -17,6 +17,9 @@ import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { About } from "./About";
 
+const MReactLogo = motion(ReactLogo);
+const MSketchLogo = motion(SketchLogo);
+
 export function Home() {
   return (
     <div
@@ -63,12 +66,12 @@ function Sections() {
       <div className="buttons" id="work">
         <div className="row">
           <SectionButton
-            Icon={<ReactLogo />}
+            Icon={<MReactLogo layoutId="react-icon" />}
             label="React Work"
             to="/work/react"
           />
           <SectionButton
-            Icon={<SketchLogo />}
+            Icon={<MSketchLogo layoutId="sketch-icon" />}
             label="Poster Designs"
             to="/work/poster"
           />
@@ -76,7 +79,8 @@ function Sections() {
         <div className="row">
           <SectionButton
             Icon={
-              <svg
+              <motion.svg
+                layoutId="medium-icon"
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
@@ -88,7 +92,7 @@ function Sections() {
                 <circle cx="14" cy="24" r="12"></circle>
                 <ellipse cx="34" cy="24" rx="6" ry="11"></ellipse>
                 <ellipse cx="44" cy="24" rx="2" ry="10"></ellipse>
-              </svg>
+              </motion.svg>
             }
             label="Medium Articles"
             to="/work/medium"
@@ -101,11 +105,53 @@ function Sections() {
           />
         </div>
       </div>
+      <div
+        css={css`
+          margin: 1rem 0;
+        `}
+      >
+        <Chip link="/pricing" label="Pricing" />
+      </div>
     </div>
   );
 }
-
 const MLink = motion(Link);
+function Chip({
+  link,
+  label,
+  icon,
+}: {
+  link: string;
+  label: string;
+  icon?: EmotionJSX.Element;
+}) {
+  const theme = useTheme();
+  return (
+    <MLink
+      to={link}
+      whileTap={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
+      whileHover={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
+      css={css`
+        display: flex;
+        padding: 0.8rem 1.6rem;
+        height: fit-content;
+        align-items: center;
+        width: fit-content;
+        border: 1px solid ${theme.palette.primary.main};
+        svg,
+        img {
+          width: 22px;
+          height: 22px;
+          object-fit: contain;
+          margin-right: 10px;
+        }
+      `}
+    >
+      {icon}
+      <motion.span layoutId={link}>{label}</motion.span>
+    </MLink>
+  );
+}
 
 function SectionButton({
   label,

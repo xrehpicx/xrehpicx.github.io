@@ -9,7 +9,9 @@ import { ReactComponent as SketchLogo } from "../../assets/HeaderIcons/sketch.sv
 import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
+
 const MTypography = motion(Typography);
+const MSketchLogo = motion(SketchLogo);
 
 export default function MediumWork() {
   const { works } = useContext(ContentfullContext);
@@ -48,7 +50,7 @@ export default function MediumWork() {
       `}
     >
       <div className="title">
-        <SketchLogo />
+        <MSketchLogo layoutId="sketch-icon" />
 
         <MTypography
           layoutId={history.location.pathname}
