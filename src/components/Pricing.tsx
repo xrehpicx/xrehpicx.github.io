@@ -10,6 +10,7 @@ import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
 import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
+import { Footer } from "./Footer";
 
 const MReactLogo = motion(ReactLogo);
 const MSketchLogo = motion(SketchLogo);
@@ -34,155 +35,158 @@ export default function Pricing() {
   useEffect(resizeGrid, [windowWidth]);
 
   return (
-    <div
-      css={css`
-        padding: 1.2rem 1.6rem;
-        margin: 0 auto;
-        margin-top: 1.6rem;
-        max-width: 1200px;
-        width: 100%;
-        .title {
-          display: flex;
-          align-items: center;
-          svg {
-            width: 2.6rem;
-            height: 2.6rem;
-          }
-        }
-        .price-section {
-          display: flex;
-          padding: 1.2rem 2rem;
-          flex-direction: column;
-          border: 1px solid ${theme.palette.primary.main};
+    <>
+      <div
+        css={css`
+          padding: 1.2rem 1.6rem;
+          margin: 0 auto;
+          margin-top: 1.6rem;
+          max-width: 1200px;
           width: 100%;
-          .price {
-            margin-left: 0.5rem;
-            .price {
-              margin-left: 1rem;
+          .title {
+            display: flex;
+            align-items: center;
+            svg {
+              width: 2.6rem;
+              height: 2.6rem;
             }
           }
-        }
-      `}
-    >
-      <div className="title">
-        <MReactLogo layoutId="react-icon" />
-        <MSketchLogo
-          layoutId="sketch-icon"
-          css={css`
-            margin-left: 1rem;
-          `}
-        />
-
-        <MTypography
-          layoutId={history.location.pathname}
-          ml="1rem"
-          variant="h3"
-        >
-          Pricing
-        </MTypography>
-      </div>
-
-      <StackGrid
-        css={css`
-          margin-top: 1.6rem;
+          .price-section {
+            display: flex;
+            padding: 1.2rem 2rem;
+            flex-direction: column;
+            border: 1px solid ${theme.palette.primary.main};
+            width: 100%;
+            .price {
+              margin-left: 0.5rem;
+              .price {
+                margin-left: 1rem;
+              }
+            }
+          }
         `}
-        gridRef={(r) => (grid.current = r)}
-        columnWidth={
-          windowWidth > 1440
-            ? "25%"
-            : windowWidth > 1200
-            ? "30%"
-            : windowWidth > 1024
-            ? "40%"
-            : "100%"
-        }
-        duration={ANIMATION_DURATION}
-        gutterWidth={16}
-        gutterHeight={16}
-        appearDelay={100}
-        monitorImagesLoaded
-
-        // horizontal
       >
-        <motion.div
-          className="price-section"
-          whileHover={{
-            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
-          }}
-          whileTap={{
-            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
-          }}
+        <div className="title">
+          <MReactLogo layoutId="react-icon" />
+          <MSketchLogo
+            layoutId="sketch-icon"
+            css={css`
+              margin-left: 1rem;
+            `}
+          />
+
+          <MTypography
+            layoutId={history.location.pathname}
+            ml="1rem"
+            variant="h3"
+          >
+            Pricing
+          </MTypography>
+        </div>
+
+        <StackGrid
+          css={css`
+            margin-top: 1.6rem;
+          `}
+          gridRef={(r) => (grid.current = r)}
+          columnWidth={
+            windowWidth > 1440
+              ? "25%"
+              : windowWidth > 1200
+              ? "30%"
+              : windowWidth > 1024
+              ? "40%"
+              : "100%"
+          }
+          duration={ANIMATION_DURATION}
+          gutterWidth={16}
+          gutterHeight={16}
+          appearDelay={100}
+          monitorImagesLoaded
+
+          // horizontal
         >
-          <Typography variant="h4">Software</Typography>
-          <div className="price">
-            <Typography variant="h6" color="primary">
-              Web dev
-            </Typography>
+          <motion.div
+            className="price-section"
+            whileHover={{
+              boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+            }}
+            whileTap={{
+              boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+            }}
+          >
+            <Typography variant="h4">Software</Typography>
             <div className="price">
               <Typography variant="h6" color="primary">
-                fontend
+                Web dev
+              </Typography>
+              <div className="price">
+                <Typography variant="h6" color="primary">
+                  fontend
+                </Typography>
+                <Typography variant="body1" fontSize={"1.5rem"}>
+                  2200rs/hr
+                </Typography>
+              </div>
+              <div className="price">
+                <Typography variant="h6" color="primary">
+                  backend
+                </Typography>
+                <Typography variant="body1" fontSize={"1.5rem"}>
+                  2000rs/hr
+                </Typography>
+              </div>
+            </div>
+            <div className="price">
+              <Typography variant="h6" color="primary">
+                App dev
               </Typography>
               <Typography variant="body1" fontSize={"1.5rem"}>
-                2200rs/hr
+                3000rs/hr
+              </Typography>
+            </div>
+          </motion.div>
+          <motion.div
+            className="price-section"
+            whileHover={{
+              boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+            }}
+            whileTap={{
+              boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+            }}
+          >
+            <Typography variant="h4">Design</Typography>
+
+            <div className="price">
+              <Typography variant="h6" color="primary">
+                Web dev
+              </Typography>
+              <Typography variant="body1" fontSize={"1.5rem"}>
+                1000rs/hr
               </Typography>
             </div>
             <div className="price">
               <Typography variant="h6" color="primary">
-                backend
+                Event
               </Typography>
               <Typography variant="body1" fontSize={"1.5rem"}>
-                2000rs/hr
+                200rs/hr
               </Typography>
             </div>
-          </div>
-          <div className="price">
-            <Typography variant="h6" color="primary">
-              App dev
-            </Typography>
-            <Typography variant="body1" fontSize={"1.5rem"}>
-              3000rs/hr
-            </Typography>
-          </div>
-        </motion.div>
-        <motion.div
-          className="price-section"
-          whileHover={{
-            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
-          }}
-          whileTap={{
-            boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
-          }}
-        >
-          <Typography variant="h4">Design</Typography>
 
-          <div className="price">
-            <Typography variant="h6" color="primary">
-              Web dev
-            </Typography>
-            <Typography variant="body1" fontSize={"1.5rem"}>
-              1000rs/hr
-            </Typography>
-          </div>
-          <div className="price">
-            <Typography variant="h6" color="primary">
-              Event
-            </Typography>
-            <Typography variant="body1" fontSize={"1.5rem"}>
-              200rs/hr
-            </Typography>
-          </div>
-
-          <div className="price">
-            <Typography variant="h6" color="primary">
-              Certificates and other Banners
-            </Typography>
-            <Typography variant="body1" fontSize={"1.5rem"}>
-              500rs/hr
-            </Typography>
-          </div>
-        </motion.div>
-      </StackGrid>
-    </div>
+            <div className="price">
+              <Typography variant="h6" color="primary">
+                Certificates and other Banners
+              </Typography>
+              <Typography variant="body1" fontSize={"1.5rem"}>
+                500rs/hr
+              </Typography>
+            </div>
+          </motion.div>
+        </StackGrid>
+      </div>
+      <Footer />
+    </>
   );
 }
 
