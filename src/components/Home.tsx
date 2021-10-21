@@ -14,8 +14,8 @@ import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import { Nav } from "./Nav";
-import { Status } from "./Status";
 import { Footer } from "./Footer";
+import { About } from "./About";
 
 export function Home() {
   return (
@@ -31,6 +31,7 @@ export function Home() {
     >
       <Nav />
       <Header />
+      <About />
       <Sections />
       <Footer />
     </div>
@@ -43,10 +44,6 @@ function Sections() {
     <div
       css={css`
         padding: 1.2rem 1.6rem;
-        padding-top: 2rem;
-        @media (max-width: 600px) {
-          padding-top: 6rem;
-        }
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
@@ -61,20 +58,8 @@ function Sections() {
         .row {
           margin-top: 1rem;
         }
-        .status-icon {
-          display: flex;
-          align-items: center;
-          margin-bottom: 10px;
-          & > img {
-            width: 32px;
-            height: 32px;
-            object-fit: contain;
-            margin-left: 10px;
-          }
-        }
       `}
     >
-      <Status />
       <div className="buttons" id="work">
         <div className="row">
           <SectionButton
@@ -165,4 +150,3 @@ function SectionButton({
     </MLink>
   );
 }
-

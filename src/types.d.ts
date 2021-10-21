@@ -1,5 +1,6 @@
 import React from "react";
 // import { DefaultTheme, GlobalStyleComponent } from "styled-components";
+import { IClubsFields, IWorkFields } from "../@types/generated/contentful";
 import { Theme, GlobalStyleComponent } from "@emotion/react";
 export interface DefaultContextProps {
   themer: IThemer;
@@ -16,6 +17,7 @@ export interface ContentfullContextProps {
     logo: string;
   };
   works: IWorkFields[];
+  clubs: IClubsFields[];
 }
 export interface DebugContextProps {
   debug: boolean;

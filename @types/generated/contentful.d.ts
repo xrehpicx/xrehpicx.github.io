@@ -36,6 +36,28 @@ export interface IAboutMe extends Entry<IAboutMeFields> {
   };
 }
 
+export interface IClubsFields {
+  /** icon */
+  icon?: Asset | undefined;
+}
+
+export interface IClubs extends Entry<IClubsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "clubs";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IStatusFields {
   /** Status text */
   statusText?: string | undefined;
@@ -89,6 +111,9 @@ export interface IWorkFields {
 
   /** links */
   links?: string[] | undefined;
+
+  /** id */
+  id: number;
 }
 
 /** all my works */
@@ -110,7 +135,7 @@ export interface IWork extends Entry<IWorkFields> {
   };
 }
 
-export type CONTENT_TYPE = "aboutMe" | "status" | "work";
+export type CONTENT_TYPE = "aboutMe" | "clubs" | "status" | "work";
 
 export type LOCALE_CODE = "en-US";
 

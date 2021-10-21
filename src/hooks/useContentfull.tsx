@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient, ContentfulClientApi } from "contentful";
 import {
   IAboutMeFields,
+  IClubsFields,
   IStatusFields,
   IWorkFields,
 } from "../../@types/generated/contentful";
@@ -22,6 +23,7 @@ export default function useContentfull() {
     logo: "",
   });
   const [works, setWorks] = useState<IWorkFields[]>([]);
+  const [clubs, setClubs] = useState<IClubsFields[]>([]);
 
   useEffect(() => {
     setClient(
@@ -57,12 +59,18 @@ export default function useContentfull() {
         content_type: "work",
       }).then((response) => {
         setWorks(response.items.map((item) => item.fields));
-        console.log(response.items.map((item) => item.fields));
+        // console.log(response.items.map((item) => item.fields));
+      });
+      Client.getEntries<IClubsFields>({
+        content_type: "clubs",
+      }).then((response) => {
+        setClubs(response.items.map((item) => item.fields));
+        // console.log(response.items.map((item) => item.fields));
       });
     }
   }, [Client]);
 
   return useMemo(() => {
-    return { status, about, works };
-  }, [status, about, works]);
+    return { status, about, works, clubs };
+  }, [status, about, works, clubs]);
 }

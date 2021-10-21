@@ -6,19 +6,19 @@ import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
 import { ReactComponent as InstaLogo } from "../assets/HeaderIcons/insta.svg";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
 import { useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+/* import { Link } from "react-router-dom";
 import { TextGlitch } from "./TextGlitch";
-import { DebugContext } from "../Contexts/CoolDebugStuff";
+import { DebugContext } from "../Contexts/CoolDebugStuff"; */
 import Triangle from "../assets/Triangle.svg";
 import { useContext } from "react";
 import { ContentfullContext } from "../Contexts/Contentfull";
 
 // import { Chip } from "./Home";
 
-const MLink = motion(Link);
+// const MLink = motion(Link);
 
 export function Footer() {
-  const theme = useTheme();
+  //   const theme = useTheme();
   const { about } = useContext(ContentfullContext);
   return (
     <footer
@@ -32,6 +32,7 @@ export function Footer() {
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
+        padding-bottom: 2rem;
 
         .branding {
           display: flex;
@@ -170,13 +171,12 @@ export function Chip({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      whileTap={{ boxShadow: `-2px 2px 0 1px ${theme.palette.primary.main}` }}
-      whileHover={{ boxShadow: `-2px 2px 0 1px ${theme.palette.primary.main}` }}
+      whileTap={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
+      whileHover={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
       css={css`
         display: flex;
         padding: 1rem 1.8rem;
         height: fit-content;
-        /* padding-bottom: 0.5rem; */
         align-items: center;
         width: fit-content;
         border: 1px solid ${theme.palette.primary.main};

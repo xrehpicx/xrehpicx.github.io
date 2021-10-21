@@ -12,9 +12,9 @@ export const ContentfullContext = createContext<ContentfullContextProps>(
 
 export const ContentfullContextProvider: FC = ({ children }) => {
   // custom hookss
-  const { status, about, works } = useContentfull();
+  const content = useContentfull();
   return (
-    <ContentfullContext.Provider value={{ status, about, works }}>
+    <ContentfullContext.Provider value={content}>
       {children}
     </ContentfullContext.Provider>
   );
