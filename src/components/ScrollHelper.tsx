@@ -19,21 +19,6 @@ export function ScrollHelper() {
     }
   }, [scrollDirection]);
 
-  function scrol(direction: number | null) {
-    if (direction === 180) {
-      const { history } = window;
-      history.scrollRestoration = "auto";
-      // if ("scrollRestoration" in history) {
-      // }
-      // This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
-      window.scrollTo(0, 0);
-      return;
-    }
-    if (direction === 0) {
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  }
-
   return (
     <motion.div
       layoutId="scroll-helper"
@@ -54,4 +39,16 @@ export function ScrollHelper() {
       <MTriangle animate={{ rotate: angle }} />
     </motion.div>
   );
+}
+function scrol(direction: number | null) {
+  if (direction === 180) {
+    // if ("scrollRestoration" in history) {
+    // }
+    // This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (direction === 0) {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 }

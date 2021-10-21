@@ -2,9 +2,9 @@
 import { css } from "@emotion/react";
 import { Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import { useContext, useEffect, useRef } from "react";
-import { IWorkFields } from "../../@types/generated/contentful";
-import { ContentfullContext } from "../Contexts/Contentfull";
+import { useEffect, useRef } from "react";
+/* import { IWorkFields } from "../../@types/generated/contentful";
+import { ContentfullContext } from "../Contexts/Contentfull"; */
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
 import { useHistory } from "react-router";
