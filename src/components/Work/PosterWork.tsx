@@ -6,7 +6,7 @@ import { useContext, useEffect, useRef } from "react";
 import { IWorkFields } from "../../../@types/generated/contentful";
 import { ContentfullContext } from "../../Contexts/Contentfull";
 import { ReactComponent as SketchLogo } from "../../assets/HeaderIcons/sketch.svg";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 import { ScrollHelper } from "../ScrollHelper";
@@ -56,7 +56,6 @@ export default function MediumWork() {
       <ScrollHelper />
       <div className="title">
         <MSketchLogo layoutId="sketch-icon" />
-
         <MTypography
           layoutId={history.location.pathname}
           ml="1rem"
@@ -65,6 +64,9 @@ export default function MediumWork() {
           Posters
         </MTypography>
       </div>
+      <Typography variant="body1" ml="60px" mt="1rem">
+        <Link to="/pricing">View pricing</Link>
+      </Typography>
       <StackGrid
         css={css`
           margin-top: 1.6rem;

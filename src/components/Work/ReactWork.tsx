@@ -9,7 +9,7 @@ import { ReactComponent as ReactLogo } from "../../assets/HeaderIcons/react.svg"
 import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
-
+import { Link } from "react-router-dom";
 const MTypography = motion(Typography);
 const MReactLogo = motion(ReactLogo);
 
@@ -58,6 +58,9 @@ export default function ReactWork() {
           React
         </MTypography>
       </div>
+      <Typography variant="body1" ml="60px" mt="1rem">
+        <Link to="/pricing">View pricing</Link>
+      </Typography>
 
       <StackGrid
         css={css`
