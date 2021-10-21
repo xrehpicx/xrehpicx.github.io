@@ -36,7 +36,7 @@ export function About() {
         css={css`
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          /* justify-content: center; */
           padding-top: 2rem;
           @media (max-width: 600px) {
             algin-items: center;
