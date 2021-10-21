@@ -48,6 +48,8 @@ export function ScrollHelper() {
       onClick={() => {
         scrol(angle);
       }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: window.scrollY > 0 ? 1 : 0 }}
     >
       <MTriangle animate={{ rotate: angle }} />
     </motion.div>
