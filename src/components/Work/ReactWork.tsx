@@ -87,7 +87,7 @@ export default function ReactWork() {
         {works
           .filter((work) => work.type === "react")
           .map((work) => <WorkCard key={work.title} work={work} />)
-          .reverse()}
+         }
       </StackGrid>
       {/* <div
         css={css`
@@ -100,7 +100,7 @@ export default function ReactWork() {
         {works
           .filter((work) => work.type === "react")
           .map((work) => <WorkCard key={work.title} work={work} />)
-          .reverse()}
+        }
       </div> */}
     </div>
   );
