@@ -73,7 +73,7 @@ function Sections() {
         <div className="row">
           <SectionButton
             Icon={<MReactLogo layoutId="react-icon" />}
-            label="React Work"
+            label="React / Web Work"
             to="/work/react"
           />
           <SectionButton

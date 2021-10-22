@@ -55,7 +55,7 @@ export default function ReactWork() {
           ml="1rem"
           variant="h3"
         >
-          React
+          React / Web
         </MTypography>
       </div>
       <Typography variant="body1" ml="60px" mt="1rem">
