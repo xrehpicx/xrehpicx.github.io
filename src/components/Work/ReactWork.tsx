@@ -10,8 +10,29 @@ import { useHistory } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 import { Link } from "react-router-dom";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
+
 const MTypography = motion(Typography);
 const MReactLogo = motion(ReactLogo);
+
+const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    border: `1px solid ${theme.palette.primary.main}`,
+    borderRadius: "0",
+    fontWeight: "600",
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    borderRadius: "0",
+  },
+}));
 
 export default function ReactWork() {
   const { works } = useContext(ContentfullContext);
@@ -86,8 +107,9 @@ export default function ReactWork() {
       >
         {works
           .filter((work) => work.type === "react")
-          .map((work) => <WorkCard key={work.title} work={work} />)
-         }
+          .map((work) => (
+            <WorkCard key={work.title} work={work} />
+          ))}
       </StackGrid>
       {/* <div
         css={css`
@@ -143,9 +165,17 @@ function WorkCard({ work }: { work: IWorkFields }) {
           padding: 1.2rem 2rem;
         `}
       >
-        <Typography variant="h4" noWrap>
-          {work.title}
-        </Typography>
+        <div
+          css={css`
+            display: flex;
+            align-items: center;
+          `}
+        >
+          <Typography variant="h4" noWrap>
+            {work.title}
+          </Typography>
+          {work.stack && <Techs stack={work.stack} />}
+        </div>
         <Typography variant="h6">{work.body}</Typography>
       </div>
 
@@ -178,5 +208,28 @@ function WorkCard({ work }: { work: IWorkFields }) {
         ))}
       </div>
     </motion.div>
+  );
+}
+
+function Techs({ stack }: { stack: string[] }) {
+  // const theme = useTheme();
+  return (
+    <HtmlTooltip
+      arrow
+      placement="top"
+      title={
+        <div>
+          {stack.map((tech) => (
+            <Typography variant="body1">{tech}</Typography>
+          ))}
+        </div>
+      }
+    >
+      <HelpOutlineIcon
+        css={css`
+          margin-left: 1rem;
+        `}
+      />
+    </HtmlTooltip>
   );
 }

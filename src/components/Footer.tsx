@@ -66,28 +66,6 @@ export function Footer() {
           </Typography>
         </section>
         <ContactChips />
-        {/* <section
-          css={css`
-            padding-bottom: 2rem;
-
-            ul {
-              display: flex;
-              flex-direction: column;
-              a {
-                line-height: 1.6rem;
-              }
-            }
-          `}
-        >
-          <Typography variant="h6" color="inherit">
-            Work
-          </Typography>
-          <ul>
-            <MLink to="/work/react">React</MLink>
-            <MLink to="/work/poster">Posters</MLink>
-            <MLink to="/work/medium">Articles</MLink>
-          </ul>
-        </section> */}
       </div>
       <div className="branding">
         <img src={about.logo || Triangle} alt="logo" />
@@ -156,7 +134,7 @@ function ContactChips() {
   );
 }
 
-export function Chip({
+function Chip({
   link,
   label,
   icon,
@@ -175,7 +153,7 @@ export function Chip({
       whileHover={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
       css={css`
         display: flex;
-        padding: 1rem 1.8rem;
+        padding: 1rem 1rem;
         height: fit-content;
         align-items: center;
         width: fit-content;
@@ -185,12 +163,12 @@ export function Chip({
           width: 22px;
           height: 22px;
           object-fit: contain;
-          margin-right: 10px;
+          /* margin-right: 10px; */
         }
       `}
     >
       {icon}
-      <span>{label}</span>
+      {/* <span>{label}</span> */}
     </motion.a>
   );
 }

@@ -195,6 +195,7 @@ function SectionButton({
       to={to || { pathname: href }}
       target={target}
       whileHover={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
+      whileTap={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
     >
       {Icon}
       <motion.span layoutId={to} style={{ marginLeft: "1rem" }}>
