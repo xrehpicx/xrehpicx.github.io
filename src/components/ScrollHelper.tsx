@@ -45,10 +45,19 @@ function scrol(direction: number | null) {
     // if ("scrollRestoration" in history) {
     // }
     // This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top:0,
+      left:0,
+      behavior: 'smooth',
+    });
     return;
   }
   if (direction === 0) {
-    window.scrollTo(0, document.body.scrollHeight);
+    // window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo({
+      top:document.body.scrollHeight,
+      left:0,
+      behavior: 'smooth',
+    });
   }
 }

@@ -122,7 +122,7 @@ export default function Pricing() {
               </Typography>
               <div className="price">
                 <Typography variant="h6" color="primary">
-                  fontend
+                  frontend
                 </Typography>
                 <Typography variant="body1" fontSize={"1.5rem"}>
                   2200rs/hr
