@@ -52,14 +52,16 @@ export function About() {
           }
         `}
       >
-        {clubs.map((club, i) => (
-          <motion.img
-            layout
-            key={club.icon?.fields.file.fileName}
-            src={club.icon?.fields.file.url}
-            alt=""
-          />
-        ))}
+        {clubs
+          .map((club, i) => (
+            <motion.img
+              layout
+              key={club.icon?.fields.file.fileName}
+              src={club.icon?.fields.file.url}
+              alt=""
+            />
+          ))
+          .reverse()}
       </div>
     </div>
   );
