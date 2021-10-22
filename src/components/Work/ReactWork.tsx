@@ -163,6 +163,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
       <div
         css={css`
           padding: 1.2rem 2rem;
+          padding-bottom: 0.8rem;
         `}
       >
         <div
@@ -201,9 +202,11 @@ function WorkCard({ work }: { work: IWorkFields }) {
               src={`https://s2.googleusercontent.com/s2/favicons?domain=${link}`}
               alt=""
             />
-            <a href={link} target={"_blank"} rel="noreferrer">
-              {link.split("//")[1]}
-            </a>
+            <Typography noWrap variant="body1">
+              <a href={link} target={"_blank"} rel="noreferrer">
+                {link.split("//")[1]}
+              </a>
+            </Typography>
           </div>
         ))}
       </div>
