@@ -64,8 +64,16 @@ export default function MediumWork() {
           Posters
         </MTypography>
       </div>
-      <Typography variant="body1" ml="60px" mt="1rem">
-        <Link to="/pricing">View pricing</Link>
+      <Typography variant="body1" mt="1rem">
+        <Link to="/">Home</Link>
+        <Link
+          css={css`
+            margin-left: 1rem;
+          `}
+          to="/pricing"
+        >
+          View pricing
+        </Link>
       </Typography>
       <StackGrid
         css={css`

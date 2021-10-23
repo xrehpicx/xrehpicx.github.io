@@ -40,7 +40,7 @@ var background = "";
 window.data = { accent, background };
 export const GlobalStyle = () => {
   const theme = useTheme();
-  console.log(theme);
+  // console.log(theme);
   return (
     <Global
       styles={css`
