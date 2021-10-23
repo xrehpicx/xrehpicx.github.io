@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AnimateSharedLayout } from "framer-motion";
 import { DebugIndicator } from "./components/DebugIndicator";
 import { Home } from "./components/Home";
+import { Con } from "./components/Con";
 import NotFound from "./components/NotFound";
 import Work from "./components/Work";
 import Pricing from "./components/Pricing";
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route exact path="/pricing">
               <Pricing />
+            </Route>
+            <Route exact path="/con">
+              <Con />
             </Route>
             <Route path="/work/:work">
               <Work />

@@ -12,7 +12,7 @@ export const DebugContextProvider: FC = ({ children }) => {
   const [debug, setDebug] = useState(false);
   useEffect(() => {
     const onkey = (e: KeyboardEvent) => {
-      console.log(e);
+
       if ((e.shiftKey && e.key === "D") || (e.shiftKey && e.key === "d")) {
         setDebug((s) => !s);
       }

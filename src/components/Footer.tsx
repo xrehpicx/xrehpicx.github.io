@@ -10,8 +10,9 @@ import { useTheme } from "@mui/material";
 import { TextGlitch } from "./TextGlitch";
 import { DebugContext } from "../Contexts/CoolDebugStuff"; */
 import Triangle from "../assets/Triangle.svg";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { ContentfullContext } from "../Contexts/Contentfull";
+import { useHistory } from "react-router-dom";
 
 // import { Chip } from "./Home";
 
@@ -67,10 +68,34 @@ export function Footer() {
         </section>
         <ContactChips />
       </div>
-      <div className="branding">
+      <ConButton>
         <img src={about.logo || Triangle} alt="logo" />
-      </div>
+      </ConButton>
     </footer>
+  );
+}
+
+function ConButton({ children }: { children: EmotionJSX.Element }) {
+  const counter = useRef(0);
+  const history = useHistory();
+  return (
+    <motion.div
+      css={css`
+        width: fit-content;
+      `}
+      whileTap={{ scale: 0.9 }}
+      onTap={() => {
+        if (counter.current > 4) {
+          history.push("/con");
+        }
+        counter.current++;
+        setTimeout(() => {
+          counter.current = 0;
+        }, 2000);
+      }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
