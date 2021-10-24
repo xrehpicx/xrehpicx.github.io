@@ -69,9 +69,9 @@ export function useThemer() {
     dispatch({ type: "toggle" });
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(theme));
-  }, [theme]);
+  }, [theme]); */
 
   return useMemo<IThemer>(() => {
     return { theme, Global: GlobalStyle, toggle, dispatch };

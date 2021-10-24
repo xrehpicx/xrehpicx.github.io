@@ -35,37 +35,32 @@ export default function useContentfull() {
       })
     );
   }, []);
+
   useEffect(() => {
     if (Client) {
-      Client.getEntries<IStatusFields>({
-        content_type: "status",
-      }).then((response) => {
-        setStatus({
-          statusText: response.items[0].fields.statusText || "null",
-          icon: response.items[0].fields.icon?.fields.file.url || "null",
-        });
+      getWorks(Client).then(setWorks);
+      const localStatus = localStorage.getItem("status-raj");
+      const localAbout = localStorage.getItem("about-raj");
+      const localClubs = localStorage.getItem("clubs-raj");
+
+      getStatus(Client).then((s) => {
+        if (localStatus && compareStatus(JSON.parse(localStatus), s)) return s;
+        localStatus && localStorage.setItem("status-raj", localStatus);
+        localStatus && setStatus(JSON.parse(localStatus));
+        !localStatus && setStatus(s);
       });
-      Client.getEntries<IAboutMeFields>({
-        content_type: "aboutMe",
-      }).then((response) => {
-        setAbout({
-          name: response.items[0].fields.name || "Raj Sharma",
-          role: response.items[0].fields.role || "Designer & Developer",
-          brand: response.items[0].fields.brand || "xrehpicx",
-          logo: response.items[0].fields.logo?.fields.file.url || "",
-        });
+
+      getAbout(Client).then((a) => {
+        if (localAbout && compareAbout(JSON.parse(localAbout), a)) return a;
+        localAbout && localStorage.setItem("about-raj", localAbout);
+        localAbout && setAbout(JSON.parse(localAbout));
+        !localAbout && setAbout(a);
       });
-      Client.getEntries<IWorkFields>({
-        content_type: "work",
-      }).then((response) => {
-        setWorks(response.items.map((item) => item.fields));
-        // console.log(response.items.map((item) => item.fields));
-      });
-      Client.getEntries<IClubsFields>({
-        content_type: "clubs",
-      }).then((response) => {
-        setClubs(response.items.map((item) => item.fields));
-        // console.log(response.items.map((item) => item.fields));
+      getClubs(Client).then((c) => {
+        if (localClubs && compareClubs(JSON.parse(localClubs), c)) return c;
+        localClubs && localStorage.setItem("clubs-raj", localClubs);
+        localClubs && setClubs(JSON.parse(localClubs));
+        !localClubs && setClubs(c);
       });
     }
   }, [Client]);
@@ -73,4 +68,107 @@ export default function useContentfull() {
   return useMemo(() => {
     return { status, about, works, clubs };
   }, [status, about, works, clubs]);
+}
+
+function compareStatus(status: StatusType, oldstatus: StatusType) {
+  if (
+    status.statusText === oldstatus.statusText &&
+    status.icon === oldstatus.icon
+  ) {
+    return true;
+  }
+  return false;
+}
+type AboutType = {
+  name: string;
+  role: string;
+  brand: string;
+  logo: string;
+};
+
+function compareAbout(about: AboutType, oldabout: AboutType) {
+  if (
+    about.name === oldabout.name &&
+    about.role === oldabout.role &&
+    about.brand === oldabout.brand &&
+    about.logo === oldabout.logo
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function compareClubs(clubs: IClubsFields[], oldclubs: IClubsFields[]) {
+  if (
+    clubs.length === oldclubs.length &&
+    clubs.every((club, index) => club === oldclubs[index])
+  ) {
+    return true;
+  }
+  return false;
+}
+
+/* function compareWorks(works: IWorkFields[], oldworks: IWorkFields[]) {
+  if (works.length === oldworks.length) {
+    for (const { i, work } of works.map((work, i) => ({
+      i,
+      work,
+    }))) {
+      if (
+        work.title === oldworks[i].title ||
+        work.body === oldworks[i].body ||
+        (work.image &&
+          oldworks[i] &&
+          oldworks[0].image &&
+          work.image[0]?.fields.file.url ===
+            oldworks[i]?.image[0]?.fields?.file.url)
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return false;
+} */
+
+async function getStatus(Client: ContentfulClientApi) {
+  return await Client.getEntries<IStatusFields>({
+    content_type: "status",
+  }).then((response) => {
+    return {
+      statusText: response.items[0].fields.statusText || "null",
+      icon: response.items[0].fields.icon?.fields.file.url || "null",
+    };
+  });
+}
+
+async function getAbout(Client: ContentfulClientApi) {
+  return await Client.getEntries<IAboutMeFields>({
+    content_type: "aboutMe",
+  }).then((response) => {
+    return {
+      name: response.items[0].fields.name || "Raj Sharma",
+      role: response.items[0].fields.role || "Designer & Developer",
+      brand: response.items[0].fields.brand || "xrehpicx",
+      logo: response.items[0].fields.logo?.fields.file.url || "",
+    };
+  });
+}
+
+async function getWorks(Client: ContentfulClientApi) {
+  return await Client.getEntries<IWorkFields>({
+    content_type: "work",
+  }).then((response) => {
+    return response.items.map((item) => item.fields);
+    // console.log(response.items.map((item) => item.fields));
+  });
+}
+
+async function getClubs(Client: ContentfulClientApi) {
+  return await Client.getEntries<IClubsFields>({
+    content_type: "clubs",
+  }).then((response) => {
+    return response.items.map((item) => item.fields);
+    // console.log(response.items.map((item) => item.fields));
+  });
 }

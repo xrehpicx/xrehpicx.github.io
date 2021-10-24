@@ -7,9 +7,10 @@ import { IWorkFields } from "../../../@types/generated/contentful";
 import { ContentfullContext } from "../../Contexts/Contentfull";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 
 const MTypography = motion(Typography);
+const MLink = motion(Link);
 
 export default function MediumWork() {
   const { works } = useContext(ContentfullContext);
@@ -98,14 +99,23 @@ function WorkCard({ work }: { work: IWorkFields }) {
   }, [work]);
 
   return (
-    <motion.div
+    <MLink
+      to={{ pathname: `${work.links && work.links[0]}` }}
+      target="_blank"
       css={css`
         display: flex;
         flex-direction: column;
         border: 1px solid ${theme.palette.primary.main};
         width: 100%;
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+          text-decoration: none;
+        }
       `}
-      whileHover={{ boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}` }}
+      whileHover={{
+        boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}`,
+      }}
       whileTap={{ boxShadow: `-8px 8px 0 1px ${theme.palette.primary.main}` }}
     >
       {work.image && (
@@ -158,7 +168,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
           </div>
         ))}
       </div>
-    </motion.div>
+    </MLink>
   );
 }
 
