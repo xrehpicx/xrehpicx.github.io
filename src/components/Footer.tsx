@@ -12,7 +12,7 @@ import { DebugContext } from "../Contexts/CoolDebugStuff"; */
 import Triangle from "../assets/Triangle.svg";
 import { useContext, useRef } from "react";
 import { ContentfullContext } from "../Contexts/Contentfull";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // import { Chip } from "./Home";
 
@@ -76,6 +76,7 @@ export function Footer() {
             </Link> */}
             </Typography>
           </section>
+          <FooterNavs />
           <ContactChips />
         </div>
         <ConButton>
@@ -83,6 +84,34 @@ export function Footer() {
         </ConButton>
       </div>
     </footer>
+  );
+}
+
+function FooterNavs() {
+  return (
+    <section
+      css={css`
+        margin-right: 2rem;
+      `}
+    >
+      <Typography variant="subtitle1" color="inherit">
+        Go to
+      </Typography>
+      <ul
+        css={css`
+          display: flex;
+          flex-direction: column;
+          a {
+            line-height: 1.6rem;
+          }
+        `}
+      >
+        <Link to={{ pathname: "/" }}>Home</Link>
+        <Link to={{ pathname: "/work/react" }}>React</Link>
+        <Link to={{ pathname: "/work/poster" }}>Poster</Link>
+        <Link to={{ pathname: "/work/medium" }}>Medium</Link>
+      </ul>
+    </section>
   );
 }
 

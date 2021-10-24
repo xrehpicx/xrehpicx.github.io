@@ -31,7 +31,7 @@ export function Home() {
         flex-direction: column;
         align-items: stretch;
         @media (max-width: 600px) {
-          padding-bottom: 120px;
+          /* padding-bottom: 120px; */
         }
       `}
     >
