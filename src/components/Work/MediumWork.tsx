@@ -16,7 +16,8 @@ export default function MediumWork() {
   const { works } = useContext(ContentfullContext);
 
   const history = useHistory();
-
+  const theme = useTheme();
+  
   const ANIMATION_DURATION = 400;
   const [windowWidth] = useWindowSize();
   const grid = useRef<Grid | null>(null);
@@ -37,6 +38,7 @@ export default function MediumWork() {
         margin-top: 1.6rem;
         max-width: 1200px;
         width: 100%;
+        background-color: ${theme.palette.background.paper};
         .title {
           display: flex;
           align-items: center;

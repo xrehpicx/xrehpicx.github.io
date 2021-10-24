@@ -16,7 +16,7 @@ const MSketchLogo = motion(SketchLogo);
 
 export default function MediumWork() {
   const { works } = useContext(ContentfullContext);
-
+  const theme = useTheme();
   const history = useHistory();
 
   const ANIMATION_DURATION = 400;
@@ -42,6 +42,7 @@ export default function MediumWork() {
         width: 100%;
         display: flex;
         flex-direction: column;
+        background-color: ${theme.palette.background.paper};
         .title {
           display: flex;
           align-items: center;
