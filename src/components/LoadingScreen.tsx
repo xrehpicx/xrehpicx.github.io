@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Typography, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { TextGlitch } from "./TextGlitch";
 

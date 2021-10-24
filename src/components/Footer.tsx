@@ -39,6 +39,8 @@ export function Footer() {
         .contact-chips {
           margin-top: 10px;
           display: flex;
+          /* align-items: center; */
+          align-self: center;
           flex-wrap: wrap;
           gap: 1rem;
         }
@@ -218,22 +220,20 @@ function Chip({
       whileHover={{ boxShadow: `-5px 5px 0 1px ${theme.palette.primary.main}` }}
       css={css`
         display: flex;
-        padding: 1rem 1rem;
+        padding: 0.8rem 0.8rem;
         height: fit-content;
         align-items: center;
         width: fit-content;
         border: 1px solid ${theme.palette.primary.main};
         svg,
         img {
-          width: 22px;
-          height: 22px;
+          width: 1rem;
+          height: 1rem;
           object-fit: contain;
-          /* margin-right: 10px; */
         }
       `}
     >
       {icon}
-      {/* <span>{label}</span> */}
     </motion.a>
   );
 }
