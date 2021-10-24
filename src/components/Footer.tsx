@@ -13,6 +13,7 @@ import Triangle from "../assets/Triangle.svg";
 import { useContext, useRef } from "react";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { Link, useHistory } from "react-router-dom";
+import { TextGlitch } from "./TextGlitch";
 
 // import { Chip } from "./Home";
 
@@ -58,7 +59,7 @@ export function Footer() {
           css={css`
             display: flex;
             flex-wrap: wrap;
-            padding-bottom: 1.6rem;
+            padding-bottom: 1rem;
           `}
         >
           <section
@@ -84,6 +85,24 @@ export function Footer() {
         <ConButton>
           <img src={about.logo || Triangle} alt="logo" />
         </ConButton>
+        <motion.section
+          css={css`
+            padding-top: 1rem;
+          `}
+        >
+          <TextGlitch
+            interval={30}
+            cycletime={2500}
+            css={css`
+              /* text-align: center; */
+              font-size: 0.8rem;
+              color: ${theme.palette.primary.main};
+              font-family: source-code-pro, Menlo, Monaco, Consolas,
+                "Courier New", monospace;
+            `}
+            text="Designed and built by me"
+          />
+        </motion.section>
       </div>
     </footer>
   );
