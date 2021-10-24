@@ -6,7 +6,7 @@ import { useContext, useEffect, useRef } from "react";
 import { IWorkFields } from "../../../@types/generated/contentful";
 import { ContentfullContext } from "../../Contexts/Contentfull";
 import { ReactComponent as ReactLogo } from "../../assets/HeaderIcons/react.svg";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 import { Link } from "react-router-dom";
@@ -36,8 +36,9 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 export default function ReactWork() {
   const { works } = useContext(ContentfullContext);
-
+  const theme = useTheme();
   const history = useHistory();
+  const { state } = useLocation<{ from: string }>();
 
   const ANIMATION_DURATION = 400;
   const [windowWidth] = useWindowSize();
@@ -50,6 +51,10 @@ export default function ReactWork() {
     }
   };
   useEffect(resizeGrid, [windowWidth]);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <div
@@ -79,18 +84,53 @@ export default function ReactWork() {
           React / Web
         </MTypography>
       </div>
-      <Typography variant="body1" mt="1rem">
-        <Link to="/">Home</Link>
-        <Link
-          css={css`
-            margin-left: 1rem;
-            border-left: 1px solid ${useTheme().palette.primary.main};
-            padding-left: 1rem;
-          `}
-          to="/pricing"
-        >
-          View pricing
-        </Link>
+      <Typography
+        variant="body1"
+        mt="1rem"
+        color="primary"
+        css={css`
+          span {
+            cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        `}
+      >
+        {state && state.from && state.from === "/" ? (
+          <>
+            <span onClick={() => history.goBack()}>Home</span>
+            <span
+              onClick={() => {
+                history.goBack();
+                setTimeout(() => {
+                  history.push("/pricing");
+                }, 600);
+              }}
+              css={css`
+                margin-left: 1rem;
+                border-left: 1px solid ${theme.palette.primary.main};
+                padding-left: 1rem;
+              `}
+            >
+              View pricing
+            </span>
+          </>
+        ) : (
+          <>
+            <Link to="/">Home</Link>
+            <Link
+              css={css`
+                margin-left: 1rem;
+                border-left: 1px solid ${theme.palette.primary.main};
+                padding-left: 1rem;
+              `}
+              to="/pricing"
+            >
+              View pricing
+            </Link>
+          </>
+        )}
       </Typography>
 
       <StackGrid

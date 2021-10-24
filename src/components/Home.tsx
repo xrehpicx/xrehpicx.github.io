@@ -22,7 +22,6 @@ import { ScrollHelper } from "./ScrollHelper";
 const MReactLogo = motion(ReactLogo);
 const MSketchLogo = motion(SketchLogo);
 
-
 export function Home() {
   return (
     <div
@@ -192,7 +191,7 @@ function SectionButton({
           object-fit: contain;
         }
       `}
-      to={to || { pathname: href }}
+      to={{ pathname: to || href, state: { from: window.location.pathname } }}
       target={target}
       whileHover={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
       whileTap={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
