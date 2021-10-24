@@ -84,6 +84,8 @@ export default function ReactWork() {
         <Link
           css={css`
             margin-left: 1rem;
+            border-left: 1px solid ${useTheme().palette.primary.main};
+            padding-left: 1rem;
           `}
           to="/pricing"
         >
