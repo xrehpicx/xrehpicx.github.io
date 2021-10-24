@@ -16,7 +16,7 @@ export function Status() {
         .status-icon {
           display: flex;
           align-items: center;
-          margin-bottom: 10px;
+          margin-bottom: 2px;
           & > img {
             width: 32px;
             height: 32px;
