@@ -19,8 +19,9 @@ import { useHistory } from "react-router-dom";
 // const MLink = motion(Link);
 
 export function Footer() {
-  //   const theme = useTheme();
+  const theme = useTheme();
   const { about } = useContext(ContentfullContext);
+
   return (
     <footer
       css={css`
@@ -28,12 +29,8 @@ export function Footer() {
         flex-direction: column;
         /* align-items: center; */
         /* filter: brightness(0.8); */
+        background-color: ${theme.palette.background.paper};
         justify-content: center;
-        padding: 1.2rem 1.6rem;
-        max-width: 1200px;
-        width: 100%;
-        margin: 0 auto;
-        padding-bottom: 2rem;
 
         .branding {
           display: flex;
@@ -49,33 +46,42 @@ export function Footer() {
     >
       <div
         css={css`
-          display: flex;
-          flex-wrap: wrap;
-          padding-bottom: 1.6rem;
+          padding: 2rem 1.6rem;
+          max-width: 1200px;
+          width: 100%;
+          margin: 0 auto;
         `}
       >
-        <section
+        <div
           css={css`
-            padding-right: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 1.6rem;
           `}
         >
-          <Typography variant="h4" color="inherit">
-            Raj Sharma
-          </Typography>
-          <Typography mt="0.5rem" variant="body1" color="inherit">
-            Student at <br /> Atria Institute of Technology <br /> (for now)
-          </Typography>
-          <Typography mt="0.5rem" variant="body1" color="inherit">
-            {/* <Link target={'_blank'} to={{ pathname: "https://olvi.vercel.app/contact" }}>
+          <section
+            css={css`
+              padding-right: 2rem;
+            `}
+          >
+            <Typography variant="h4" color="inherit">
+              Raj Sharma
+            </Typography>
+            <Typography mt="0.5rem" variant="body1" color="inherit">
+              Student at <br /> Atria Institute of Technology <br /> (for now)
+            </Typography>
+            <Typography mt="0.5rem" variant="body1" color="inherit">
+              {/* <Link target={'_blank'} to={{ pathname: "https://olvi.vercel.app/contact" }}>
               Send me a message or feedback!
             </Link> */}
-          </Typography>
-        </section>
-        <ContactChips />
+            </Typography>
+          </section>
+          <ContactChips />
+        </div>
+        <ConButton>
+          <img src={about.logo || Triangle} alt="logo" />
+        </ConButton>
       </div>
-      <ConButton>
-        <img src={about.logo || Triangle} alt="logo" />
-      </ConButton>
     </footer>
   );
 }

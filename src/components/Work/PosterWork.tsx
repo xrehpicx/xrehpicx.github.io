@@ -42,7 +42,7 @@ export default function MediumWork() {
         width: 100%;
         display: flex;
         flex-direction: column;
-        background-color: ${theme.palette.background.paper};
+        /* background-color: ${theme.palette.background.paper}; */
         .title {
           display: flex;
           align-items: center;
@@ -124,6 +124,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
         display: flex;
         flex-direction: column;
         border: 1px solid ${theme.palette.primary.main};
+        background-color: ${theme.palette.background.paper};
         /* width: 100%;
         height: fit-content; */
       `}
