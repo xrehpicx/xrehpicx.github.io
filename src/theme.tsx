@@ -13,8 +13,8 @@ export const defaultdarkpallete: PaletteOptions = {
     main: "#ff6060",
   },
   background: {
-    default: "#050608",
-    paper: "#050608",
+    default: "#0e1118",
+    paper: "#0b0e16",
   },
 };
 

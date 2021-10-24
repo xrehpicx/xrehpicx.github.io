@@ -149,7 +149,7 @@ function WorkCard({ work }: { work: IWorkFields }) {
     <motion.div
       css={css`
         display: flex;
-
+        background-color: ${theme.palette.background.paper};
         flex-direction: column;
         border: 1px solid ${theme.palette.primary.main};
         width: 100%;
