@@ -9,6 +9,7 @@ import { DebugContext } from "../Contexts/CoolDebugStuff";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { useContext } from "react";
 import { TextGlitch } from "./TextGlitch";
+import { motion } from "framer-motion";
 
 export function Nav() {
   // const theme = useTheme();
@@ -40,7 +41,11 @@ export function Nav() {
           }
         `}
       >
-        <div className="left">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="left"
+        >
           <img src={about.logo || Triangle} alt="logo" />
           <Typography ml={1} variant="h4">
             <TextGlitch
@@ -51,7 +56,7 @@ export function Nav() {
               cycletime={2000}
             />
           </Typography>
-        </div>
+        </motion.div>
         <ul className="right">
           <Button
             css={css`

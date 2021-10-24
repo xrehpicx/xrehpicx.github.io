@@ -5,6 +5,9 @@ import { useContext } from "react";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { Background } from "./Background";
 import { TextGlitch } from "./TextGlitch";
+import { motion } from "framer-motion";
+
+const MTypography = motion(Typography);
 
 export function Header() {
   const { about } = useContext(ContentfullContext);
@@ -25,7 +28,8 @@ export function Header() {
           height: 100%;
         `}
       >
-        <Typography
+        <MTypography
+          layoutId="main-name"
           css={css`
             font-size: 4rem;
             @media (max-width: 600px) {
@@ -35,7 +39,7 @@ export function Header() {
           variant="h1"
         >
           {about.name}
-        </Typography>
+        </MTypography>
         <Typography
           css={css`
             font-size: 1.5rem;

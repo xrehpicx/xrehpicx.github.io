@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 // import { ReactComponent as Triangle } from "../assets/Triangle.svg";
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
@@ -18,11 +18,16 @@ import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { About } from "./About";
 import { ScrollHelper } from "./ScrollHelper";
+import { ContentfullContext } from "../Contexts/Contentfull";
+import { useContext } from "react";
+import { LoadingScreen } from "./LoadingScreen";
 
 const MReactLogo = motion(ReactLogo);
 const MSketchLogo = motion(SketchLogo);
 
 export function Home() {
+  const { status, works } = useContext(ContentfullContext);
+
   return (
     <div
       css={css`
@@ -34,11 +39,20 @@ export function Home() {
         }
       `}
     >
-      <Nav />
-      <Header />
-      <About />
-      <Sections />
-      <Footer />
+      <AnimatePresence>
+        {status && works.length ? (
+          <>
+            <Nav />
+            <Header />
+            <About />
+            <Sections />
+            <Footer />
+          </>
+        ) : (
+          <LoadingScreen />
+        )}
+      </AnimatePresence>
+      {/* <LoadingScreen /> */}
     </div>
   );
 }

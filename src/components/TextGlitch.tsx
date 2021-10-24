@@ -30,7 +30,7 @@ export function TextGlitch({
   }, [dencrypt, text, interval, cycletime]);
   return (
     <motion.p style={style} className={className}>
-      {result}
+      {result || text}
     </motion.p>
   );
 }
