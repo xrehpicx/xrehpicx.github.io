@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 // import VisibilityIcon from "@mui/icons-material/Visibility";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useHistory } from "react-router";
@@ -20,6 +20,7 @@ export function Con() {
   const theme = useTheme();
   const [brightness, setBrightness] = useState(100);
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   return (
     <motion.div
       css={css`
@@ -76,21 +77,24 @@ export function Con() {
           <LockOutlinedIcon />
         </IconButton>
         <IconButton
+          disabled={loading}
           onClick={() => {
             console.log("send");
+            setLoading(true);
             axios
               .post("https://olvi.herokuapp.com/api/response/hani", {
                 message: localStorage.getItem("nvm-text"),
               })
-              .then((res) => {
+              .then(() => {
+                setLoading(false);
                 alert("Message sent!");
               })
-              .catch((res) => {
+              .catch(() => {
                 alert("failed!");
               });
           }}
         >
-          <SendOutlinedIcon />
+          {loading ? <CircularProgress /> : <SendOutlinedIcon />}
         </IconButton>
         <Slider
           min={0}
