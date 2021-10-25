@@ -57,6 +57,7 @@ export function Home() {
   );
 }
 
+
 function Sections() {
   const theme = useTheme();
   return (
