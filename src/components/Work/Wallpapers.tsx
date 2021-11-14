@@ -6,6 +6,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { IWallpaperCollectionFields } from "../../../@types/generated/contentful";
 import { ContentfullContext } from "../../Contexts/Contentfull";
 // import { ReactComponent as SketchLogo } from "../../assets/HeaderIcons/sketch.svg";
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import { useHistory, Link } from "react-router-dom";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
@@ -17,68 +18,103 @@ const MTypography = motion(Typography);
 
 export default function Wallpapers() {
   const { wallpapers } = useContext(ContentfullContext);
-  // const theme = useTheme();
+  const theme = useTheme();
   const history = useHistory();
 
-  /* const ANIMATION_DURATION = 400;
-  const [windowWidth] = useWindowSize();
-  const grid = useRef<Grid | null>(null);
-  const resizeGrid = () => {
-    if (grid.current) {
-      setTimeout(() => {
-        grid.current?.updateLayout();
-      }, ANIMATION_DURATION + 50); // 50 is a guess for buffer
+  const [background, setBackground] = useState("");
+
+  useEffect(() => {
+    const bg = wallpapers.find(
+      (collection) => collection.title === "wall-background"
+    );
+
+    if (bg && bg.wallpapers && bg.wallpapers.length > 0) {
+      setBackground(bg.wallpapers[0].fields.file.url);
     }
-  };
-  useEffect(resizeGrid, [windowWidth]); */
+  }, [wallpapers]);
 
   return (
-    <div
-      css={css`
-        position: relative;
-        padding: 1.2rem 1.6rem;
-        margin: 0 auto;
-        margin-top: 1.6rem;
-        max-width: 1200px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-
-        .title {
-          display: flex;
-          align-items: center;
-
-          svg {
-            width: 2.6rem;
-            height: 2.6rem;
-          }
-        }
-      `}
-    >
-      <ScrollHelper />
-      <div className="title">
-        <MTypography layoutId={history.location.pathname} variant="h3">
-          Wallpaper Collections
-        </MTypography>
-      </div>
-      <Typography variant="body1" mt="1rem">
-        <Link to="/">Home</Link>
-        <Link
+    <>
+      {background && (
+        <div
           css={css`
-            margin-left: 1rem;
-            border-left: 1px solid ${useTheme().palette.primary.main};
-            padding-left: 1rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              to top,
+              ${theme.palette.background.default},
+              transparent
+            );
+            img {
+              z-index: -1;
+              position: relative;
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           `}
-          to="/pricing"
         >
-          View pricing
-        </Link>
-      </Typography>
-      {wallpapers &&
-        wallpapers.map((collection) => (
-          <Collection collection={collection} key={collection.title} />
-        ))}
-    </div>
+          <img src={background} alt="" />
+        </div>
+      )}
+
+      <div
+        css={css`
+          position: relative;
+          padding: 1.2rem 1.6rem;
+          margin: 0 auto;
+          margin-top: 1.6rem;
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          .title {
+            display: flex;
+            align-items: center;
+
+            svg {
+              width: 2.6rem;
+              height: 2.6rem;
+            }
+          }
+        `}
+      >
+        <ScrollHelper />
+        <div className="title">
+          <InsertPhotoOutlinedIcon />
+          <MTypography
+            ml="1rem"
+            layoutId={history.location.pathname}
+            variant="h3"
+          >
+            Wallpaper Collections
+          </MTypography>
+        </div>
+        <Typography variant="body1" mt="1rem">
+          <Link to="/">Home</Link>
+          <Link
+            css={css`
+              margin-left: 1rem;
+              border-left: 1px solid ${theme.palette.primary.main};
+              padding-left: 1rem;
+            `}
+            to="/pricing"
+          >
+            View pricing
+          </Link>
+        </Typography>
+        {wallpapers &&
+          wallpapers
+            .filter((collection) => collection.title !== "wall-background")
+            .map((collection) => (
+              <Collection collection={collection} key={collection.title} />
+            ))}
+      </div>
+    </>
   );
 }
 
@@ -108,6 +144,7 @@ function Collection({
         overflow-y: hidden;
         position: relative;
       `}
+      onTap={!open ? () => setOpen(true) : () => {}}
       animate={{ height: !open ? "400px" : "auto" }}
     >
       {!open && (
