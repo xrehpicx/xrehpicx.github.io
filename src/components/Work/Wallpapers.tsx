@@ -131,7 +131,7 @@ function Collection({
         {collection.title}
       </MTypography>
       <Typography variant="body1" mb="0.6rem">
-        <motion.span
+        <motion.a
           css={css`
             font-weight: 600;
             margin-left: 0.4rem;
@@ -142,8 +142,8 @@ function Collection({
           whileTap={{ scale: 0.9 }}
           onTap={() => setOpen((o) => !o)}
         >
-          {open ? "hide" : "show all"}
-        </motion.span>
+          {open ? "hide" : "show"}
+        </motion.a>
       </Typography>
       <StackGrid
         rtl={false}
@@ -175,7 +175,7 @@ function Collection({
       </StackGrid>
       {open && (
         <Typography textAlign={"center"} variant="body1" mt="1rem" mb="0.6rem">
-          <motion.span
+          <motion.a
             css={css`
               font-weight: 600;
 
@@ -187,7 +187,7 @@ function Collection({
             onTap={() => setOpen((o) => !o)}
           >
             {open ? "close" : "show all"}
-          </motion.span>
+          </motion.a>
         </Typography>
       )}
     </motion.div>
