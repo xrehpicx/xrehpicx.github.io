@@ -104,11 +104,29 @@ function Collection({
     <motion.div
       css={css`
         margin-bottom: 1.6rem;
-        overflow-y: hidden;
         width: 101%;
+        overflow-y: hidden;
+        position: relative;
       `}
       animate={{ height: !open ? "400px" : "auto" }}
     >
+      {!open && (
+        <div
+          css={css`
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(
+              to top,
+              ${theme.palette.background.default},
+              transparent
+            );
+          `}
+        ></div>
+      )}
       <MTypography mt="1rem" variant="h3">
         {collection.title}
       </MTypography>
