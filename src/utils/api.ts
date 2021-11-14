@@ -2,8 +2,9 @@ import axios from "axios";
 
 const endpoint =
   process.env.NODE_ENV !== "production"
-    ? "http://localhost:8000/api"
-    : "https://olvi.herokuapp.com/api";
+    ? "https://olvi.herokuapp.com/api"
+    : // ? "http://localhost:8000/api"
+      "https://olvi.herokuapp.com/api";
 
 const api = axios.create({ baseURL: endpoint });
 /* 
@@ -35,4 +36,13 @@ export async function respond(email: string, message: string) {
     { timeout: 10000 }
   );
   return data;
+}
+
+export async function wakeServer() {
+  try {
+    const { data } = await api.get("/");
+    return data;
+  } catch (error) {
+    throw new Error("Something just broke lol");
+  }
 }

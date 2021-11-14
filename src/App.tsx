@@ -6,6 +6,7 @@ import { Con } from "./components/Con";
 import NotFound from "./components/NotFound";
 import Work from "./components/Work";
 import Pricing from "./components/Pricing";
+import CLI from "./components/CLI";
 import { ContextRender } from "./Contexts/AllContexts";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/cli">
+              <CLI />
             </Route>
             <Route exact path="/pricing">
               <Pricing />

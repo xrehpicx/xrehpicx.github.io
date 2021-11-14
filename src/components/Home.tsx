@@ -4,12 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 // import { ReactComponent as Triangle } from "../assets/Triangle.svg";
 import { ReactComponent as ReactLogo } from "../assets/HeaderIcons/react.svg";
 import { ReactComponent as SketchLogo } from "../assets/HeaderIcons/sketch.svg";
-import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
+// import { ReactComponent as GithubLogo } from "../assets/HeaderIcons/github.svg";
 /* import { ReactComponent as FigmaLogo } from "../assets/HeaderIcons/figma.svg";
 import { ReactComponent as GolangLogo } from "../assets/HeaderIcons/golang.svg";
 import { ReactComponent as NodejsLogo } from "../assets/HeaderIcons/nodejs.svg";
 import { ReactComponent as JsLogo } from "../assets/HeaderIcons/js.svg";
 import { ReactComponent as TsLogo } from "../assets/HeaderIcons/ts.svg"; */
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import { useTheme } from "@mui/material";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
@@ -34,9 +35,6 @@ export function Home() {
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        @media (max-width: 600px) {
-          /* padding-bottom: 120px; */
-        }
       `}
     >
       <AnimatePresence>
@@ -56,7 +54,6 @@ export function Home() {
     </div>
   );
 }
-
 
 function Sections() {
   const theme = useTheme();
@@ -118,10 +115,9 @@ function Sections() {
             to="/work/medium"
           />
           <SectionButton
-            Icon={<GithubLogo />}
-            label="Github Repos"
-            target="_blank"
-            href="https://github.com/xrehpicx?tab=repositories"
+            Icon={<InsertPhotoOutlinedIcon color="primary" />}
+            label="Wallpaper Collection"
+            to="/work/wallpapers"
           />
         </div>
       </div>

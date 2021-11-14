@@ -5,6 +5,7 @@ import PosterWork from "./PosterWork";
 
 import { useHistory } from "react-router-dom";
 import { Footer } from "../Footer";
+import Wallpapers from "./Wallpapers";
 
 export default function Work() {
   const params = useParams<{ work: string }>();
@@ -29,6 +30,13 @@ export default function Work() {
       return (
         <>
           <PosterWork />
+          <Footer />
+        </>
+      );
+    case "wallpapers":
+      return (
+        <>
+          <Wallpapers />
           <Footer />
         </>
       );

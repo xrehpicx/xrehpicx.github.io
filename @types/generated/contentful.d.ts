@@ -85,6 +85,32 @@ export interface IStatus extends Entry<IStatusFields> {
   };
 }
 
+export interface IWallpaperCollectionFields {
+  /** title */
+  title?: string | undefined;
+
+  /** wallpapers */
+  wallpapers?: Asset[] | undefined;
+}
+
+export interface IWallpaperCollection
+  extends Entry<IWallpaperCollectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "wallpaperCollection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IWorkFields {
   /** title */
   title?: string | undefined;
@@ -135,7 +161,12 @@ export interface IWork extends Entry<IWorkFields> {
   };
 }
 
-export type CONTENT_TYPE = "aboutMe" | "clubs" | "status" | "work";
+export type CONTENT_TYPE =
+  | "aboutMe"
+  | "clubs"
+  | "status"
+  | "wallpaperCollection"
+  | "work";
 
 export type LOCALE_CODE = "en-US";
 

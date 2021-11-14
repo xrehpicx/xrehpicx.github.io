@@ -5,6 +5,7 @@ import {
   IAboutMeFields,
   IClubsFields,
   IStatusFields,
+  IWallpaperCollectionFields,
   IWorkFields,
 } from "../../@types/generated/contentful";
 
@@ -24,6 +25,9 @@ export default function useContentfull() {
   });
   const [works, setWorks] = useState<IWorkFields[]>([]);
   const [clubs, setClubs] = useState<IClubsFields[]>([]);
+  const [wallpapers, setWallpapers] = useState<IWallpaperCollectionFields[]>(
+    []
+  );
 
   useEffect(() => {
     setClient(
@@ -62,12 +66,15 @@ export default function useContentfull() {
         localClubs && setClubs(JSON.parse(localClubs));
         !localClubs && setClubs(c);
       });
+      getWallpapers(Client).then((w) => {
+        setWallpapers(w);
+      });
     }
   }, [Client]);
 
   return useMemo(() => {
-    return { status, about, works, clubs };
-  }, [status, about, works, clubs]);
+    return { status, about, works, clubs, wallpapers };
+  }, [status, about, works, clubs, wallpapers]);
 }
 
 function compareStatus(status: StatusType, oldstatus: StatusType) {
@@ -140,6 +147,11 @@ async function getStatus(Client: ContentfulClientApi) {
       icon: response.items[0].fields.icon?.fields.file.url || "null",
     };
   });
+}
+async function getWallpapers(Client: ContentfulClientApi) {
+  return await Client.getEntries<IWallpaperCollectionFields>({
+    content_type: "wallpaperCollection",
+  }).then((response) => response.items.map((item) => item.fields));
 }
 
 async function getAbout(Client: ContentfulClientApi) {

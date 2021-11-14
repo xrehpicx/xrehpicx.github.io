@@ -5,9 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@icons-pack/react-simple-icons": "^4.6.1",
     "@mui/icons-material": "^5.0.3",
     "@mui/material": "^5.0.3",
+    "@icons-pack/react-simple-icons": "^4.6.1",
     "@react-hook/window-size": "^3.0.7",
     "@spro/get-website-favicon": "^0.0.10",
     "@testing-library/jest-dom": "^5.14.1",
