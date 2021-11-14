@@ -85,9 +85,20 @@ export default function Wallpapers() {
       >
         <ScrollHelper />
         <div className="title">
-          <InsertPhotoOutlinedIcon />
+          <InsertPhotoOutlinedIcon
+            css={css`
+              @media (max-width: 600px) {
+                display: none;
+              }
+            `}
+          />
           <MTypography
-            ml="1rem"
+            css={css`
+              margin-left: 1rem;
+              @media (max-width: 600px) {
+                margin-left: 0;
+              }
+            `}
             layoutId={history.location.pathname}
             variant="h3"
           >
