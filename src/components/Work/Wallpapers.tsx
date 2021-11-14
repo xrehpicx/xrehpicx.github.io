@@ -75,13 +75,9 @@ export default function Wallpapers() {
         </Link>
       </Typography>
       {wallpapers &&
-        wallpapers
-          .map((collection) => {
-            return (
-              <Collection collection={collection} key={collection.title} />
-            );
-          })
-          .reverse()}
+        wallpapers.map((collection) => (
+          <Collection collection={collection} key={collection.title} />
+        ))}
     </div>
   );
 }
