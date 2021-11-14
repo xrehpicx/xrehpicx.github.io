@@ -88,7 +88,7 @@ function Collection({
   collection: IWallpaperCollectionFields;
 }) {
   const [open, setOpen] = useState(false);
-
+  const theme = useTheme();
   const ANIMATION_DURATION = 400;
   const [windowWidth] = useWindowSize();
   const grid = useRef<Grid | null>(null);
@@ -117,7 +117,7 @@ function Collection({
           css={css`
             font-weight: 600;
             margin-left: 0.4rem;
-            color: ${useTheme().palette.primary.main};
+            color: ${theme.palette.primary.main};
             cursor: pointer;
           `}
           whileHover={{ scale: 1.1 }}
@@ -155,6 +155,23 @@ function Collection({
           .reverse()
           .slice(0, open ? collection.wallpapers.length : 3)}
       </StackGrid>
+      {open && (
+        <Typography textAlign={"center"} variant="body1" mt="1rem" mb="0.6rem">
+          <motion.span
+            css={css`
+              font-weight: 600;
+
+              color: ${theme.palette.primary.main};
+              cursor: pointer;
+            `}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onTap={() => setOpen((o) => !o)}
+          >
+            {open ? "close" : "show all"}
+          </motion.span>
+        </Typography>
+      )}
     </motion.div>
   );
 }
