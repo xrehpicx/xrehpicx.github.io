@@ -1,3 +1,4 @@
+import { IStoryFields } from "./../@types/generated/contentful.d";
 import React from "react";
 // import { DefaultTheme, GlobalStyleComponent } from "styled-components";
 import {
@@ -23,6 +24,7 @@ export interface ContentfullContextProps {
   works: IWorkFields[];
   clubs: IClubsFields[];
   wallpapers: IWallpaperCollectionFields[];
+  stories: IStoryFields[];
 }
 export interface DebugContextProps {
   debug: boolean;

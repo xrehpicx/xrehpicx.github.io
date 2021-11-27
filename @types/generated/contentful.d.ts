@@ -85,6 +85,31 @@ export interface IStatus extends Entry<IStatusFields> {
   };
 }
 
+export interface IStoryFields {
+  /** title */
+  title?: string | undefined;
+
+  /** body */
+  body?: Document | undefined;
+}
+
+export interface IStory extends Entry<IStoryFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "story";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IWallpaperCollectionFields {
   /** title */
   title?: string | undefined;
@@ -165,6 +190,7 @@ export type CONTENT_TYPE =
   | "aboutMe"
   | "clubs"
   | "status"
+  | "story"
   | "wallpaperCollection"
   | "work";
 

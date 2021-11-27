@@ -130,7 +130,16 @@ function FooterNavs() {
         <Link to={{ pathname: "/" }}>Home</Link>
         <Link to={{ pathname: "/work/react" }}>React</Link>
         <Link to={{ pathname: "/work/poster" }}>Poster</Link>
-        <Link to={{ pathname: "/work/medium" }}>Medium</Link>
+        <Link to={{ pathname: "/work/wallpapers" }}>Wallpapers</Link>
+        {/* <Link
+          to={{
+            pathname:
+              "https://be.contentful.com/oauth/authorize?response_type=token&client_id=BnXXUDM0Pw6OU0pCaa5oh5dgRdlJWYXR4c4wnbugGGA&redirect_uri=https://raj-design.in/login&scope=content_management_manage",
+          }}
+          target={"_blank"}
+        >
+          Login
+        </Link> */}
       </ul>
     </section>
   );

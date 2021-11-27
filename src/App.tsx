@@ -7,6 +7,9 @@ import NotFound from "./components/NotFound";
 import Work from "./components/Work";
 import Pricing from "./components/Pricing";
 import CLI from "./components/CLI";
+import LoginHandler from "./components/Editor/LoginHandler";
+import Stories from "./components/Stories";
+import Notion from "./components/Notion";
 import { ContextRender } from "./Contexts/AllContexts";
 
 function App() {
@@ -21,6 +24,18 @@ function App() {
             <Route exact path="/cli">
               <CLI />
             </Route>
+            <Route path="/blog/:id">
+              <Notion />
+            </Route>
+            <Route path="/blog">
+              <Notion />
+            </Route>
+            <Route path="/page/:id">
+              <Notion />
+            </Route>
+            <Route path="/pages">
+              <Notion />
+            </Route>
             <Route exact path="/pricing">
               <Pricing />
             </Route>
@@ -32,6 +47,12 @@ function App() {
             </Route>
             <Route path="/work">
               <Work />
+            </Route>
+            <Route path="/login">
+              <LoginHandler />
+            </Route>
+            <Route path="/stories">
+              <Stories />
             </Route>
             <Route path="*">
               <NotFound />

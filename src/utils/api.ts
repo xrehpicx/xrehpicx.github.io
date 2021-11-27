@@ -46,3 +46,9 @@ export async function wakeServer() {
     throw new Error("Something just broke lol");
   }
 }
+
+export async function authContentfull(){
+  window.open(
+    "https://be.contentful.com/oauth/authorize?response_type=token&client_id=BnXXUDM0Pw6OU0pCaa5oh5dgRdlJWYXR4c4wnbugGGA&redirect_uri=https://raj-design.in/login&scope=content_management_manage"
+  );
+}

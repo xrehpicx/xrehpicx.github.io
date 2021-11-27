@@ -5,9 +5,11 @@ import {
   IAboutMeFields,
   IClubsFields,
   IStatusFields,
+  IStoryFields,
   IWallpaperCollectionFields,
   IWorkFields,
 } from "../../@types/generated/contentful";
+import axios from "axios";
 
 type StatusType = { statusText: string; icon: string };
 
@@ -25,6 +27,7 @@ export default function useContentfull() {
   });
   const [works, setWorks] = useState<IWorkFields[]>([]);
   const [clubs, setClubs] = useState<IClubsFields[]>([]);
+  const [stories, setStories] = useState<IStoryFields[]>([]);
   const [wallpapers, setWallpapers] = useState<IWallpaperCollectionFields[]>(
     []
   );
@@ -69,12 +72,15 @@ export default function useContentfull() {
       getWallpapers(Client).then((w) => {
         setWallpapers(w);
       });
+      getStories(Client).then((s) => {
+        setStories(s);
+      });
     }
   }, [Client]);
 
   return useMemo(() => {
-    return { status, about, works, clubs, wallpapers };
-  }, [status, about, works, clubs, wallpapers]);
+    return { status, about, works, clubs, wallpapers, stories };
+  }, [status, about, works, clubs, wallpapers, stories]);
 }
 
 function compareStatus(status: StatusType, oldstatus: StatusType) {
@@ -151,6 +157,11 @@ async function getStatus(Client: ContentfulClientApi) {
 async function getWallpapers(Client: ContentfulClientApi) {
   return await Client.getEntries<IWallpaperCollectionFields>({
     content_type: "wallpaperCollection",
+  }).then((response) => response.items.map((item) => item.fields));
+}
+async function getStories(Client: ContentfulClientApi) {
+  return await Client.getEntries<IStoryFields>({
+    content_type: "story",
   }).then((response) => response.items.map((item) => item.fields));
 }
 
