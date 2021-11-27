@@ -2,7 +2,7 @@
 My portfolio website  
 currently hosted on [vercel](https://vercel.com/)
 ### Hosted at
-raj-design.in | raj.shades.asia | [xrehpicx.vercel.app](https://xrehpicx.vercel.app)
+[raj-design.in](https://raj-design.in) | [raj.shades.asia](https://raj.shades.asia) | [xrehpicx.vercel.app](https://xrehpicx.vercel.app)
 
 ### Pages
 github for pages is [here](https://github.com/xrehpicx/pages) which is also hosted on vercel at:  
