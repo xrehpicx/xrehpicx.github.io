@@ -112,7 +112,12 @@ function Sections() {
               </svg>
             }
             label="Pages"
-            to="/pages"
+            href={
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:3000/pages"
+                : "https://pages.raj-design.in"
+            }
+            target={"_blank"}
           />
           <SectionButton
             Icon={<InsertPhotoOutlinedIcon color="primary" />}
