@@ -35,6 +35,10 @@ jobs:
           git config user.email $user_email
           git remote set-url origin https://${github_token}@github.com/${repository}
           # npm run deploy
+          curl --location --request POST 'olvi.herokuapp.com/api/notify/o' \
+          --header 'Content-Type: application/x-www-form-urlencoded' \
+          --data-urlencode 'title=Raj Design' \
+          --data-urlencode 'description=deployed'
         env:
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
