@@ -62,7 +62,7 @@
   "scripts": {
     "start": "react-scripts start",
     "typegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
-    "build": "react-scripts build",
+    "build": "CI=fasle react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
