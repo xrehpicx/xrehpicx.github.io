@@ -9,7 +9,7 @@ import {
   IWallpaperCollectionFields,
   IWorkFields,
 } from "../../@types/generated/contentful";
-import axios from "axios";
+
 
 type StatusType = { statusText: string; icon: string };
 
