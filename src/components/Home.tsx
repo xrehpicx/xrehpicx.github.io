@@ -115,7 +115,7 @@ function Sections() {
             href={
               process.env.NODE_ENV === "development"
                 ? "http://localhost:3000/pages"
-                : "https://pages.raj-design.in"
+                : "https://pages.raj.cool"
             }
             target={"_blank"}
           />

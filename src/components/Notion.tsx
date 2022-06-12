@@ -12,16 +12,15 @@ import {
 } from "react-notion-x";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import "react-notion-x/src/styles.css";
 
+import "react-notion-x/src/styles.css";
 // used for code syntax highlighting (optional)
 import "prismjs/themes/prism-tomorrow.css";
-
 // used for collection views (optional)
 import "rc-dropdown/assets/index.css";
-
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
+
 import { Link, useParams } from "react-router-dom";
 import { useTheme } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
