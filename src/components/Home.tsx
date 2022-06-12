@@ -126,13 +126,13 @@ function Sections() {
           />
         </div>
       </div>
-      <div
+      {/* <div
         css={css`
           margin: 1rem 0;
         `}
       >
         <Chip link="/pricing" label="Pricing" />
-      </div>
+      </div> */}
 
       <ScrollHelper />
     </div>
