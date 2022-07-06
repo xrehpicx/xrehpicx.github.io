@@ -66,7 +66,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "git-deploy": "git add . && git commit -m \"Update\" && git push",
-    "vercel-deploy": "vercel --prod deploy",
+    "vercel-start": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel dev",
+    "deploy": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel deploy --prod",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel dev",
     "firebase-deploy": "firebase deploy"
   },
   "eslintConfig": {

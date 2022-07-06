@@ -22,15 +22,24 @@
   <meta property="og:image:height" content="720">
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:url" content="https://www.raj.cool" />
-  <meta name="theme-color" content="#000000" />
   <meta name="description" content="All you need to know" />
+  <meta name="theme-color" content="#000000" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-31T4QDC0JY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-31T4QDC0JY');
+  </script>
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

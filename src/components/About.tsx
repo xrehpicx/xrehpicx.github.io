@@ -24,14 +24,32 @@ export function About() {
     >
       <Status />
       <Typography variant="body1">
-        {new Date().getFullYear() - 2001}, Developer/Designer/Student, curently
-        in Atria institute of technology almost done with my Electronics and
-        Communication degree
+        {new Date().getFullYear() - 2001}, Software Dev currently working in{" "}
+        <a
+          css={css`
+            color: #ae5df9;
+            font-weight: 800;
+          `}
+          href="https://www.phonepe.com/"
+          target={"_blank"}
+          rel="noreferrer"
+        >
+          PhonePe
+        </a>
+        . for more about me check out my{" "}
+        <a
+          href="https://pages.raj.cool/9580b84ce9c34f10960619fd870bf61c/"
+          target={"_blank"}
+          rel="noreferrer"
+        >
+          Pages.
+        </a>
       </Typography>
 
-      {/* <Typography mb="1.2rem" variant="h4">
-          Clubs
-        </Typography> */}
+      <Typography mt="1.2rem" variant="h4">
+        Clubs
+      </Typography>
+
       <div
         css={css`
           display: flex;

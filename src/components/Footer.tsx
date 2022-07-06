@@ -71,7 +71,19 @@ export function Footer() {
               Raj Sharma
             </Typography>
             <Typography mt="0.5rem" variant="body1" color="inherit">
-              Student at <br /> Atria Institute of Technology <br /> (for now)
+              SDE at{" "}
+              <a
+                css={css`
+                  color: #ae5df9;
+                  font-weight: 800;
+                `}
+                href="https://www.phonepe.com/"
+                target={"_blank"}
+                rel="noreferrer"
+              >
+                PhonePe
+              </a>
+              . <br /> Almost done with college
             </Typography>
             <Typography mt="0.5rem" variant="body1" color="inherit">
               {/* <Link target={'_blank'} to={{ pathname: "https://olvi.vercel.app/contact" }}>
