@@ -28,6 +28,7 @@ export function Footer() {
       css={css`
         display: flex;
         flex-direction: column;
+        margin-top: 2rem;
         /* align-items: center; */
         /* filter: brightness(0.8); */
         background-color: ${theme.palette.background.paper};
@@ -71,7 +72,7 @@ export function Footer() {
               Raj Sharma
             </Typography>
             <Typography mt="0.5rem" variant="body1" color="inherit">
-              SDE at{" "}
+              Software Engineer at{" "}
               <a
                 css={css`
                   color: #ae5df9;
@@ -196,7 +197,7 @@ function ContactChips() {
         icon={<InstaLogo />}
       />
       <Chip
-        link="mailto:raj.fps2000@gmail.com"
+        link="mailto:conatct@raj.cool"
         label="Gmail"
         icon={
           <svg

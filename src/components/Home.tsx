@@ -11,7 +11,8 @@ import { ReactComponent as NodejsLogo } from "../assets/HeaderIcons/nodejs.svg";
 import { ReactComponent as JsLogo } from "../assets/HeaderIcons/js.svg";
 import { ReactComponent as TsLogo } from "../assets/HeaderIcons/ts.svg"; */
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
-import { useTheme } from "@mui/material";
+import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
+import { Typography, useTheme } from "@mui/material";
 import { Header } from "./Header";
 import { Link } from "react-router-dom";
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
@@ -80,9 +81,7 @@ function Sections() {
         }
       `}
     >
-      {/* <div>
-        <Chip link="/blog" label="Blog" />
-      </div> */}
+      <Typography variant="h1">Work Stuff</Typography>
       <div className="buttons" id="work">
         <div className="row">
           <SectionButton
@@ -125,14 +124,16 @@ function Sections() {
             to="/work/wallpapers"
           />
         </div>
+        <div className="row">
+          <SectionButton
+            Icon={<ForumRoundedIcon color="info" />}
+            label="Feedback Form"
+            target={"_blank"}
+            color={theme.palette.info.main}
+            href="https://cloud.olvx.in/apps/forms/s/qXx9LkXNwsaCnxdJeWaH8g6s"
+          />
+        </div>
       </div>
-      {/* <div
-        css={css`
-          margin: 1rem 0;
-        `}
-      >
-        <Chip link="/pricing" label="Pricing" />
-      </div> */}
 
       <ScrollHelper />
     </div>
@@ -182,8 +183,10 @@ function SectionButton({
   href,
   Icon,
   target = "_self",
+  color,
 }: {
   label: string;
+  color?: string;
   to?: string;
   href?: string;
   Icon: EmotionJSX.Element;
@@ -197,7 +200,8 @@ function SectionButton({
         padding-bottom: 1.3rem;
         font-size: 1.6rem;
         width: fit-content;
-        border: 1px solid ${theme.palette.primary.main};
+        border: 1px solid ${color || theme.palette.primary.main};
+        color: ${color || theme.palette.primary.main};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -210,11 +214,15 @@ function SectionButton({
       `}
       to={{ pathname: to || href, state: { from: window.location.pathname } }}
       target={target}
-      whileHover={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
-      whileTap={{ boxShadow: `-6px 6px 0 1px ${theme.palette.primary.main}` }}
+      whileHover={{
+        boxShadow: `-6px 6px 0 1px ${color || theme.palette.primary.main}`,
+      }}
+      whileTap={{
+        boxShadow: `-6px 6px 0 1px ${color || theme.palette.primary.main}`,
+      }}
     >
       {Icon}
-      <motion.span layoutId={to} style={{ marginLeft: "1rem" }}>
+      <motion.span color="inherit" layoutId={to} style={{ marginLeft: "1rem" }}>
         {label}
       </motion.span>
     </MLink>

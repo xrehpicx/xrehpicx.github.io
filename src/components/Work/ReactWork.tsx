@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Typography, useTheme } from "@mui/material";
+import { Typography, alpha, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useRef } from "react";
 import { IWorkFields } from "../../../@types/generated/contentful";
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
+import { OldDataWarning } from "../GeneralComps";
 
 const MTypography = motion(Typography);
 const MReactLogo = motion(ReactLogo);
@@ -84,6 +85,7 @@ export default function ReactWork() {
           React / Web
         </MTypography>
       </div>
+      <OldDataWarning />
       <Typography
         variant="body1"
         mt="1rem"
