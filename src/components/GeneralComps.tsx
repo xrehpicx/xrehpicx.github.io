@@ -23,7 +23,7 @@ export function OldDataWarning() {
         >
           This page was last updated in 2020, get the most updated data directly
           from{" "}
-          <a href="https://cloud.olvx.in/apps/forms/s/qXx9LkXNwsaCnxdJeWaH8g6s">
+          <a href="https://cloud.raj.cool/apps/forms/s/TSznA8t3oQNPjKmL9PAr8FmL">
             me
           </a>
         </span>
