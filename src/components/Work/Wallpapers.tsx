@@ -12,6 +12,7 @@ import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 import { ScrollHelper } from "../ScrollHelper";
 import { Asset } from "contentful";
+import { OldDataWarning } from "../GeneralComps";
 
 const MTypography = motion(Typography);
 // const MSketchLogo = motion(SketchLogo);
@@ -105,6 +106,8 @@ export default function Wallpapers() {
             Wallpaper Collections
           </MTypography>
         </div>
+
+        <OldDataWarning />
         <Typography variant="body1" mt="1rem">
           <Link to="/">Home</Link>
           <Link

@@ -10,6 +10,7 @@ import { useHistory, Link } from "react-router-dom";
 import StackGrid, { Grid } from "react-stack-grid";
 import { useWindowSize } from "@react-hook/window-size";
 import { ScrollHelper } from "../ScrollHelper";
+import { OldDataWarning } from "../GeneralComps";
 
 const MTypography = motion(Typography);
 const MSketchLogo = motion(SketchLogo);
@@ -65,6 +66,8 @@ export default function MediumWork() {
           Posters
         </MTypography>
       </div>
+
+      <OldDataWarning />
       <Typography variant="body1" mt="1rem">
         <Link to="/">Home</Link>
         <Link
