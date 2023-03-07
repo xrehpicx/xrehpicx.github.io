@@ -52,7 +52,9 @@ export const GlobalStyle = () => {
         body {
           background: ${theme.palette.background.default};
           color: ${theme.palette.text.primary};
-          font-family: "Product Sans", sans-serif;
+          font-family: "Product Sans", -apple-system, BlinkMacSystemFont,
+            "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+            "Droid Sans", "Helvetica Neue", sans-serif;
         }
         a {
           color: ${theme.palette.primary.main};
@@ -69,6 +71,8 @@ export const GlobalStyle = () => {
 export const defaultTheme = createTheme({
   palette: defaultdarkpallete,
   typography: {
-    fontFamily: "Product Sans",
+    fontFamily: `"Product Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif`,
   },
 });

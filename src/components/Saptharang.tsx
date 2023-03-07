@@ -35,21 +35,9 @@ export function SapthrangDialog() {
         },
       }}
     >
-      <DialogTitle>
-        <TextGlitch
-          interval={30}
-          cycletime={2500}
-          css={css`
-            font-size: 1.8rem;
-            /* color: ${theme.palette.primary.main}; */
-            /* font-family: source-code-pro, Menlo, Monaco, Consolas,
-                "Courier New", monospace; */
-          `}
-          text="To Sapthrang team 🎉"
-        />
-      </DialogTitle>
+      <DialogTitle>To Sapthrang team 🎉</DialogTitle>
       <DialogContent>
-        <DialogContentText color="Highlight">
+        <DialogContentText>
           Hello new Saptharang Team
           <br />
           The old website is removed <br /> (not permanently) <br /> to avoid
