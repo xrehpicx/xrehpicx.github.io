@@ -23,6 +23,7 @@ import { ScrollHelper } from "./ScrollHelper";
 import { ContentfullContext } from "../Contexts/Contentfull";
 import { useContext } from "react";
 import { LoadingScreen } from "./LoadingScreen";
+import { SapthrangDialog } from "./Saptharang";
 
 const MReactLogo = motion(ReactLogo);
 const MSketchLogo = motion(SketchLogo);
@@ -38,6 +39,7 @@ export function Home() {
         align-items: stretch;
       `}
     >
+      <SapthrangDialog />
       <AnimatePresence>
         {status && works.length ? (
           <>

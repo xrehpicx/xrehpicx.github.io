@@ -21,7 +21,7 @@ export function OldDataWarning() {
             margin-left: 0.6rem;
           `}
         >
-          This page was last updated in 2020, get the most updated data directly
+          This page was last updated in 2020/21, get the most updated data directly
           from{" "}
           <a href="https://cloud.raj.cool/apps/forms/s/TSznA8t3oQNPjKmL9PAr8FmL">
             me
